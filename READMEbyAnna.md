@@ -13,6 +13,7 @@ Simple Todo list web app.
 - Vue.js
 - PUG
 - Less
+- Day.js
 
 
 ## Backend (server)

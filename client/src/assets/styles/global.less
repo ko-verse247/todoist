@@ -13,14 +13,14 @@
 @btn-bg-active: #CB5647;
 @btn-text-light: #FFFFFF;
 @btn-bg-disabled: #EABBB5;
-@btn-bg-cancel: #D6D6D6;  
+@btn-bg-cancel: #FFFFFF;  
 @btn-text-dark: #1F1F1F;
 @btn-border-cancel: 1px solid #D6D6D6;
 @btn-border-radius: 4px;
 
 // tdl input
 @text-placeholder: #999999;
-@input-border: 1px solid #DDDDDD;
+@input-border: 2px solid #DDDDDD;
 @input-border-radius: 8px;
 
 // tdl tasks
@@ -41,6 +41,18 @@
   box-sizing: border-box;
 }
 
+// accessibility styles
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+// general styles
 body {
   margin: 0;
   padding: 0;
@@ -58,16 +70,34 @@ body {
   align-items: center;
 }
 
-.visually-hidden {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+// typography styles
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  color: @text-headers;
 }
 
+button, input {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+// button styles
+
+button {
+  color: @btn-text-light;
+  background: @btn-bg-active;
+  border: none;
+  border-radius: @btn-border-radius;
+  padding: 10px;
+  margin-right: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+// tooltip styles
 .tooltip {
   position: relative;
   display: inline-block;

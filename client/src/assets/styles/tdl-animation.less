@@ -1,0 +1,23 @@
+.fade-enter-active, .fade-leave-active, .slide-up-enter-active, .slide-up-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+
+.fade-enter, .slide-up-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-leave, .slide-up-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-enter-to, .slide-up-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-leave-to, .slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
