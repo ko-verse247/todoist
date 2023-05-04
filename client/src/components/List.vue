@@ -1,7 +1,5 @@
 <script setup>
-
-defineProps({
-})
+defineProps({})
 </script>
 
 <template lang="pug">
@@ -10,6 +8,5 @@ defineProps({
 </template>
 
 <style lang="less">
-
 
 </style>

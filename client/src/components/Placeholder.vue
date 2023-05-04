@@ -1,6 +1,5 @@
 <script setup>
-defineProps({
-})
+defineProps({})
 </script>
 
 <template lang="pug">
@@ -10,8 +9,8 @@ defineProps({
 </template>
 
 <style lang="less">
-.placeholder{
-  transform: translateY(calc(100vh*0.5));
+.placeholder {
+  transform: translateY(calc(100vh * 0.5));
   text-align: center;
   line-height: 1.3;
 }
