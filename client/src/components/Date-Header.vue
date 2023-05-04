@@ -1,6 +1,7 @@
 <script setup>
 import 'dayjs/locale/ko';
-import * as dayjs from 'dayjs';
+import * as _dayjs from 'dayjs';
+const dayjs = _dayjs;
 let date = dayjs().locale('ko').format('ddd MMMM D일');
 </script>
 
