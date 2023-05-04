@@ -1,6 +1,5 @@
 <script setup>
 import CancelIcon from "../assets/icons/cancel-icon.svg"
-
 </script>
 
 <template lang="pug">
@@ -9,7 +8,6 @@ import CancelIcon from "../assets/icons/cancel-icon.svg"
   button.cancel-btn
     span.cancel-text 실행 취소
     CancelIcon.icon(alt="")
-
 </template>
 
 <style lang="less">
@@ -44,5 +42,4 @@ import CancelIcon from "../assets/icons/cancel-icon.svg"
 .cancel-text {
   color: @popup-cancel-text
 }
-
 </style>

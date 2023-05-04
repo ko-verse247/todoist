@@ -3,6 +3,7 @@ import deleteIcon from "../assets/icons/delete-icon.svg";
 import checkEmptyIcon from "../assets/icons/check-empty-icon.svg";
 import checkDoneIcon from "../assets/icons/check-done-icon.svg";
 import addRedIcon from "../assets/icons/add-red-icon.svg";
+import DateHeader from './Date-Header.vue'
 import Placeholder from './Placeholder-Element.vue';
 import Popup from './Popup-Element.vue';
 import { ref, defineProps } from 'vue';
@@ -51,6 +52,7 @@ const markTodo = async (id, bool) => {
 </script>
 
 <template lang="pug">
+DateHeader()
 .todolist-container
   ul.todolist
     li(v-for="todo in todos" :key="todo._id" class="todo-item")

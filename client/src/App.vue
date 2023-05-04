@@ -1,6 +1,5 @@
 <script setup>
 import Nav from './components/Nav-Bar.vue'
-import DateHeader from './components/Date-Header.vue'
 import TodoList from './components/Todo-List.vue'
 import { ref, onMounted, computed} from 'vue'
 import axios from 'axios';
@@ -25,7 +24,6 @@ onMounted(() => {
 
 <template lang="pug">
 Nav(:completedCount="completedCount" :incompleteCount="incompleteCount")
-DateHeader()
 TodoList(:todos="todos" :fetchTodos="fetchTodos")
 </template>
 

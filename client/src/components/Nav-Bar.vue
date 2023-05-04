@@ -13,7 +13,6 @@ const props = defineProps({
   completedCount: { type: String, required: true },
   incompleteCount: { type: String, required: true }
 })
-
 </script>
 
 <template lang="pug">
@@ -69,7 +68,6 @@ nav.navbar
             a.menu-link(href="") 로그아웃
       userIcon.icon(alt="")
       span.visually-hidden User님의 프로필
-
 </template>
 
 <style lang="less">
@@ -167,5 +165,4 @@ nav.navbar
     display: none;
   }
 }
-
 </style>
