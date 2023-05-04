@@ -35,7 +35,7 @@
 @popup-border-radius: 6px;
 @popup-shadow: 0px 4px 8px rgba(182, 182, 182, 0.2);
 @popup-bg: #FFFFFF;
-@popup-border: 1px solid #E5E5E5;
+@popup-border: 2px solid #E5E5E5;
 
 * {
   box-sizing: border-box;
@@ -58,7 +58,40 @@ body {
   align-items: center;
 }
 
-a {
-  margin: 0;
-  padding: 0;
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  font-size: 0.9rem;
+  width: max-content;
+  background-color: @popup-bg;
+  color: @text-primary;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  border: @popup-border;
+  z-index: 1;
+  opacity: 0;
+  top: 50px;
+  transform: translatex(-30px);
+  transition: opacity 300ms ease-in-out;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 0.9;
 }

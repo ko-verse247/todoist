@@ -15,23 +15,80 @@ defineProps({
 <template lang="pug">
 nav.navbar
   .menu-panel
-    menuIcon.icon(alt="메뉴")
+    button.btn-nav.dropdown
+      .dropdown-content.left
+        ul.menu-list 
+          li
+            a.menu-link(href="") 통계
+          li
+            a.menu-link(href="") FAQ/문의
+          li
+            a.menu-link(href="") 알림
+          li
+            a.menu-link(href="") User님의 프로필
+      menuIcon.icon(alt="")
+      span.visually-hidden 메뉴
     a(href="/" title="홈페이지")
       homeIcon.icon(alt="")
     div.search-bar
       searchIcon.icon.search-icon(alt="")
       input.search(placeholder="검색" type="text")
   .user-panel
-    addWhiteIcon.icon(alt="작업 추가")
-    graphIcon.icon(alt="통계")
-    p.completed-tasks 0/5
-    infoIcon.icon(alt="FAQ/문의")
-    bellIcon.icon(alt="알림")
-    userIcon.icon(alt="User님의 프로필")
+    button.btn-nav
+      addWhiteIcon.icon(alt="")
+      span.visually-hidden 작업 추가
+    button.btn-nav
+      graphIcon.icon(alt="")
+      span.visually-hidden 통계
+    .completed-tasks.tooltip
+      p 0/5
+      span.tooltiptext 할 수 있어요!
+    button.btn-nav.dropdown
+      .dropdown-content.right.ask
+        p.dropdown-text 질문이 있으세요?
+      infoIcon.icon(alt="")
+      span.visually-hidden FAQ/문의
+    button.btn-nav.dropdown
+      .dropdown-content.right.notif
+        p.dropdown-text 새로운 알림이 없습니다.
+      bellIcon.icon(alt="")
+      span.visually-hidden 알림
+    button.btn-nav.dropdown
+      .dropdown-content.right.user
+        p.dropdown-text User님, 환영합니다
+        ul.menu-list 
+          li
+            a.menu-link(href="") 내프로필
+          li
+            a.menu-link(href="") 계정 관리
+          li
+            a.menu-link(href="") 로그아웃
+      userIcon.icon(alt="")
+      span.visually-hidden User님의 프로필
 
 </template>
 
 <style lang="less">
+@import "@/assets/styles/dropdown.less";
+
+.menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-list li {
+  margin: 0;
+}
+
+.menu-link {
+  display: block;
+  padding: 20px 10px;
+  font-size: 1.1rem;
+  color: @text-primary;
+  text-decoration: none;
+  overflow: hidden;
+}
 
 .navbar {
   display: flex;
@@ -52,6 +109,11 @@ nav.navbar
 .menu-panel, .user-panel {
   display: flex;
   align-items: center;
+}
+
+.btn-nav {
+  border: none;
+  background: none;
 }
 
 .search-bar {
@@ -89,9 +151,10 @@ nav.navbar
 }
 
 .completed-tasks {
+  display: inline-block;
   margin: 0px 7px;
   font-size: 1.2rem;
-
+  cursor: pointer;
 }
 
 </style>
