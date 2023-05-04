@@ -7,9 +7,7 @@ import infoIcon from "../assets/icons/info-icon.svg"
 import bellIcon from "../assets/icons/bell-icon.svg"
 import userIcon from "../assets/icons/user-icon.svg"
 import searchIcon from "../assets/icons/search-icon.svg"
-
-defineProps({
-})
+defineProps({})
 </script>
 
 <template lang="pug">

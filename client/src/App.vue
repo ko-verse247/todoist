@@ -1,8 +1,7 @@
 <script setup>
-import Nav from './components/Nav.vue'
-import Placeholder from './components/Placeholder.vue'
-import List from './components/List.vue'
-
+import Nav from './components/Nav-Bar.vue'
+import List from './components/Todo-List.vue'
+import Placeholder from './components/Placeholder-Element.vue'
 </script>
 
 <template lang="pug">
