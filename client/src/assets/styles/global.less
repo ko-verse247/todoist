@@ -13,18 +13,18 @@
 @btn-bg-active: #CB5647;
 @btn-text-light: #FFFFFF;
 @btn-bg-disabled: #EABBB5;
-@btn-bg-cancel: #D6D6D6;  
+@btn-bg-cancel: #FFFFFF;  
 @btn-text-dark: #1F1F1F;
 @btn-border-cancel: 1px solid #D6D6D6;
 @btn-border-radius: 4px;
 
 // tdl input
 @text-placeholder: #999999;
-@input-border: 1px solid #DDDDDD;
+@input-border: 2px solid #DDDDDD;
 @input-border-radius: 8px;
 
 // tdl tasks
-@line: inset 0px -1px 0px #EEEEEE;
+@line: 2px solid #EEEEEE;
 
 // search input
 @search-bg: #D5786C;
@@ -35,17 +35,31 @@
 @popup-border-radius: 6px;
 @popup-shadow: 0px 4px 8px rgba(182, 182, 182, 0.2);
 @popup-bg: #FFFFFF;
-@popup-border: 1px solid #E5E5E5;
+@popup-border: 2px solid #E5E5E5;
+@popup-cancel-text: #CB5647;
 
 * {
   box-sizing: border-box;
 }
 
+// accessibility styles
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+// general styles
 body {
   margin: 0;
   padding: 0;
   background: @bg;
   font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
 }
 
 #app {
@@ -58,7 +72,58 @@ body {
   align-items: center;
 }
 
-a {
-  margin: 0;
-  padding: 0;
+// typography styles
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  color: @text-headers;
+}
+
+button, input {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+// button styles
+
+button {
+  color: @btn-text-light;
+  background: @btn-bg-active;
+  border: none;
+  border-radius: @btn-border-radius;
+  padding: 10px;
+  margin-right: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+// tooltip styles
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  font-size: 0.9rem;
+  width: max-content;
+  background-color: @popup-bg;
+  color: @text-primary;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  border: @popup-border;
+  z-index: 1;
+  opacity: 0;
+  top: 50px;
+  transform: translatex(-30px);
+  transition: opacity 300ms ease-in-out;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 0.9;
 }

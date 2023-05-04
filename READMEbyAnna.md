@@ -6,18 +6,19 @@ Simple Todo list web app.
 
 ## Frontend (client)
 
-[Deployed on Render.]()
+[Deployed on Render.](https://todoist-task.onrender.com/)
 
 ### Tech used
 
 - Vue.js
 - PUG
 - Less
+- Day.js
 
 
 ## Backend (server)
 
-[Deployed on Render.]()
+[Deployed on Render.](https://todoist-be.onrender.com/)
 
 ### Tech used
 - Node.js

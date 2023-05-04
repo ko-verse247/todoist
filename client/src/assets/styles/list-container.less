@@ -1,0 +1,50 @@
+.list-container {
+  text-align: left;
+  align-self: flex-start;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.add-btn {
+  border: none;
+  background: none;
+  color: @text-secondary;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  padding-left: 0;
+  font-weight: 400;
+}
+
+.add-btn .icon {
+  margin-left: 0;
+}
+
+.todo-input {
+  border: @input-border;
+  border-radius: @input-border-radius;
+  width: 100%;
+  height: 45px;
+  line-height: 1.3;
+  padding: 0 10px;
+  color: @text-primary;
+  margin: 10px 0;
+}
+
+.todo-input::placeholder {
+  opacity: 1;
+  color: @text-placeholder;
+}
+
+.add-todo:disabled {
+  background: @btn-bg-disabled;
+}
+
+.cancel-todo {
+  background: @btn-bg-cancel;
+  border: @btn-border-cancel;
+  color: @btn-text-dark;
+}
