@@ -1,13 +1,32 @@
 <script setup>
 import Nav from './components/Nav-Bar.vue'
-import List from './components/Todo-List.vue'
-import Placeholder from './components/Placeholder-Element.vue'
+import DateHeader from './components/Date-Header.vue'
+import TodoList from './components/Todo-List.vue'
+import { ref, onMounted, computed} from 'vue'
+import axios from 'axios';
+
+const todos = ref([]);
+const completedCount = computed(() => todos.value.filter(todo => todo.completed).length)
+const incompleteCount = computed(() => todos.value.filter(todo => !todo.completed).length)
+
+const fetchTodos = async () => {
+  try {
+    const response = await axios.get('https://tdl-be.onrender.com/api/todos');
+    todos.value = response.data;
+  } catch (error) {
+    console.log(error);
+  };
+};
+
+onMounted(() => {
+  fetchTodos();
+})
 </script>
 
 <template lang="pug">
-Nav()
-List()
-Placeholder()
+Nav(:completedCount="completedCount" :incompleteCount="incompleteCount")
+DateHeader()
+TodoList(:todos="todos" :fetchTodos="fetchTodos")
 </template>
 
 

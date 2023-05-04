@@ -7,7 +7,13 @@ import infoIcon from "../assets/icons/info-icon.svg"
 import bellIcon from "../assets/icons/bell-icon.svg"
 import userIcon from "../assets/icons/user-icon.svg"
 import searchIcon from "../assets/icons/search-icon.svg"
-defineProps({})
+import { defineProps } from 'vue'
+
+const props = defineProps({
+  completedCount: { type: String, required: true },
+  incompleteCount: { type: String, required: true }
+})
+
 </script>
 
 <template lang="pug">
@@ -31,7 +37,7 @@ nav.navbar
     div.search-bar
       searchIcon.icon.search-icon(alt="")
       input.search(placeholder="검색" type="text")
-  .user-panel
+  .user-panel.hidden-on-mobile
     button.btn-nav
       addWhiteIcon.icon(alt="")
       span.visually-hidden 작업 추가
@@ -39,7 +45,7 @@ nav.navbar
       graphIcon.icon(alt="")
       span.visually-hidden 통계
     .completed-tasks.tooltip
-      p 0/5
+      p {{ completedCount }} / {{ +incompleteCount + +completedCount }}
       span.tooltiptext 할 수 있어요!
     button.btn-nav.dropdown
       .dropdown-content.right.ask
@@ -86,6 +92,7 @@ nav.navbar
   color: @text-primary;
   text-decoration: none;
   overflow: hidden;
+  font-weight: 400;
 }
 
 .navbar {
@@ -101,7 +108,7 @@ nav.navbar
   z-index: 1000;
   color: @text-nav;
   padding: 0px 20px;
-  min-height: 50px;
+  min-height: 65px;
 }
 
 .menu-panel, .user-panel {
@@ -145,14 +152,20 @@ nav.navbar
 .icon {
   transform: scale(1.5);
   cursor: pointer;
-  margin: 0 7px;
+  margin: 0 5px;
 }
 
 .completed-tasks {
   display: inline-block;
-  margin: 0px 7px;
+  margin: 0px 5px;
   font-size: 1.2rem;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+  .hidden-on-mobile {
+    display: none;
+  }
 }
 
 </style>
