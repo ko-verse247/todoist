@@ -12,6 +12,7 @@
         bg-color="#eda59e"
         density="compact"
         variant="solo"
+        placeholder="검색"
         hide-details
         single-line
         clearable
