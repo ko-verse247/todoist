@@ -49,6 +49,7 @@ const submitNewTodo = () => {
   width: 100%;
   margin: 0 auto;
   margin-top: 10px;
+  margin-bottom: 50px;
 }
 
 .add-btn {

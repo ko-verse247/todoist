@@ -91,11 +91,13 @@ Popup(:todos="todos" :todoMarked="todoMarked" :handleUnmarkTodo="handleUnmarkTod
   width: 100%;
   margin: 0 auto;
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .v-spinner {
-  transform: translate(calc(800px*0.5), 150px);
-  max-width: 500px;
+  transform: translatey(300px);
+  max-width: 200px;
 }
 
 .todolist {
