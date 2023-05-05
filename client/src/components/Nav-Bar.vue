@@ -46,19 +46,19 @@ nav.navbar
             a.menu-link(href="") 알림
           li
             a.menu-link(href="") User님의 프로필
-      menuIcon.icon(alt="")
+      menuIcon.icon.icon-nav(alt="")
       span.visually-hidden 메뉴
     a(href="/" title="홈페이지")
-      homeIcon.icon(alt="")
+      homeIcon.icon.icon-nav(alt="")
     div.search-bar
       searchIcon.icon.search-icon(alt="")
       input.search(placeholder="검색" type="text")
   .user-panel.hidden-on-mobile
     button.btn-nav
-      addWhiteIcon.icon(alt="")
+      addWhiteIcon.icon.icon-nav(alt="")
       span.visually-hidden 작업 추가
     button.btn-nav
-      graphIcon.icon(alt="")
+      graphIcon.icon.icon-nav(alt="")
       span.visually-hidden 통계
     .completed-tasks.tooltip
       p {{ completedCount }} / {{ +incompleteCount + +completedCount }}
@@ -66,12 +66,12 @@ nav.navbar
     button.btn-nav.dropdown
       .dropdown-content.right.ask
         p.dropdown-text 질문이 있으세요?
-      infoIcon.icon(alt="")
+      infoIcon.icon.icon-nav(alt="")
       span.visually-hidden FAQ/문의
     button.btn-nav.dropdown
       .dropdown-content.right.notif
         p.dropdown-text 새로운 알림이 없습니다.
-      bellIcon.icon(alt="")
+      bellIcon.icon.icon-nav(alt="")
       span.visually-hidden 알림
     button.btn-nav.dropdown
       .dropdown-content.right.user
@@ -83,7 +83,7 @@ nav.navbar
             a.menu-link(href="") 계정 관리
           li
             a.menu-link(href="") 로그아웃
-      userIcon.icon(alt="")
+      userIcon.icon.icon-nav(alt="")
       span.visually-hidden User님의 프로필
 </template>
 
@@ -122,18 +122,21 @@ nav.navbar
   right: 0;
   z-index: 1000;
   color: @text-nav;
-  padding: 0px 20px;
+  padding: 0px 10px;
   min-height: 65px;
 }
 
 .menu-panel, .user-panel {
   display: flex;
   align-items: center;
+  margin: 0 5px;
 }
 
 .btn-nav {
   border: none;
   background: none;
+  margin: 0;
+  padding: 0;
 }
 
 .search-bar {
@@ -149,7 +152,7 @@ nav.navbar
   border: none;
   line-height: 1.5;
   height: 40px;
-  min-width: 200px;
+  min-width: 180px;
   width: 100%;
   max-width: 300px;
   padding-left: 40px;
@@ -167,23 +170,40 @@ nav.navbar
   left: 7px;
 }
 
-.icon {
-  transform: scale(1.5);
+.icon.icon-nav {
+  transform: scale(1);
   cursor: pointer;
-  margin: 0 5px;
+  margin: 0 3px;
 }
 
 .completed-tasks {
   display: block;
-  margin: 0px 5px;
-  font-size: 1.2rem;
+  margin: 0 3px;
+  font-size: 1rem;
   cursor: pointer;
   min-width: max-content;
+  transform: translatey(-2px)
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 499px) {
   .hidden-on-mobile {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .completed-tasks {
+    font-size: 1.2rem;
+  }
+
+  .icon.icon-nav {
+    transform: scale(1.2);
+    cursor: pointer;
+    margin: 0 7px;
+  }
+
+  .search {
+    min-width: 300px;
   }
 }
 </style>
