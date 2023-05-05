@@ -1,17 +1,14 @@
 <script setup>
-import CancelIcon from "../assets/icons/cancel-icon.svg"
+import CancelIcon from "../assets/icons/cancel-icon.svg";
 import { ref, watch, onMounted } from 'vue';
 
 const props = defineProps({
   todos: { type: Array, required: true },
-  todoMarked: { type: Object, required: true }
+  todoMarked: { type: Object, required: true },
+  handleUnmarkTodo: { type: Function, required: true }
 });
 
 const marked = ref(props.todoMarked);
-
-const closePopup = () => {
-  marked.value = false;
-}
 
 watch(() => props.todoMarked, (value) => {
   if (value.bool) {
@@ -28,9 +25,9 @@ onMounted(() => {
 </script>
 
 <template lang="pug">
-.popup(:class="[marked ? 'active' : 'hidden']")
+.popup(:class="[marked ? 'active' : 'hidden']" )
   p.popup-text 1작업을 완료했습니다
-  button.cancel-btn(@click="closePopup")
+  button.cancel-btn(@click="handleUnmarkTodo")
     span.cancel-text 실행 취소
     CancelIcon.icon(alt="")
 </template>

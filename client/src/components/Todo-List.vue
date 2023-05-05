@@ -37,6 +37,13 @@ const markTodo = async (id, bool) => {
   }
 }
 
+const handleUnmarkTodo = () => {
+  const todo = props.todos.find(todo => todo._id === todoMarked.value.id);
+  if (todo) {
+    markTodo(todo._id, false);
+  }
+};
+
 onMounted(() => {
   setTimeout(() => {
     loading.value = false;
@@ -65,7 +72,7 @@ DateHeader()
   AddTodo(:todos="todos" :fetchTodos="fetchTodos")
   Transition(name="fade")
     Placeholder(v-if="todos.length < 1")
-Popup(:todos="todos" :todoMarked="todoMarked")
+Popup(:todos="todos" :todoMarked="todoMarked" :handleUnmarkTodo="handleUnmarkTodo")
 </template>
 
 <style lang="less">
