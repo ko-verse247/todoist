@@ -26,6 +26,3 @@ onMounted(() => {
 Nav(:completedCount="completedCount" :incompleteCount="incompleteCount")
 TodoList(:todos="todos" :fetchTodos="fetchTodos")
 </template>
-
-
-

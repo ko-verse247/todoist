@@ -1,4 +1,5 @@
 <script setup>
+import JSConfetti from 'js-confetti'
 import menuIcon from "../assets/icons/menu-icon.svg"
 import homeIcon from "../assets/icons/home-icon.svg"
 import addWhiteIcon from "../assets/icons/add-white-icon.svg"
@@ -7,12 +8,34 @@ import infoIcon from "../assets/icons/info-icon.svg"
 import bellIcon from "../assets/icons/bell-icon.svg"
 import userIcon from "../assets/icons/user-icon.svg"
 import searchIcon from "../assets/icons/search-icon.svg"
-import { defineProps } from 'vue'
+import { watchEffect } from 'vue'
 
 const props = defineProps({
   completedCount: { type: String, required: true },
   incompleteCount: { type: String, required: true }
 })
+
+const fireConfetti = () => {
+  const jsConfetti = new JSConfetti()
+  if(props.completedCount == +props.incompleteCount + +props.completedCount) {
+    jsConfetti.addConfetti({
+      emojiSize: 50,
+      emojis: ['✅', '🔥', '💥', '✨', '💫', '🎉'],
+    })
+  } else {
+    jsConfetti.addConfetti({
+      emojiSize: 50,
+      emojis: ['❗', '⏱️', '⏳', '', '👀', '🤔'],
+    })
+  }
+}
+
+watchEffect(() => {
+  if (props.completedCount == +props.incompleteCount + +props.completedCount) {
+    fireConfetti();
+  }
+})
+
 </script>
 
 <template lang="pug">
@@ -23,6 +46,8 @@ nav.navbar
         ul.menu-list 
           li
             a.menu-link(href="") 통계
+          li
+            p.menu-link(@click="fireConfetti") 완료: {{ completedCount }} / {{ +incompleteCount + +completedCount }}
           li
             a.menu-link(href="") FAQ/문의
           li
@@ -45,7 +70,7 @@ nav.navbar
       span.visually-hidden 통계
     .completed-tasks.tooltip
       p {{ completedCount }} / {{ +incompleteCount + +completedCount }}
-      span.tooltiptext 할 수 있어요!
+      span.tooltiptext {{completedCount == +incompleteCount + +completedCount ? '다 됐습니다! 수고하셨습니다!' : '할 수 있어요!'}}
     button.btn-nav.dropdown
       .dropdown-content.right.ask
         p.dropdown-text 질문이 있으세요?
@@ -85,7 +110,7 @@ nav.navbar
 
 .menu-link {
   display: block;
-  padding: 20px 10px;
+  padding: 20px 20px;
   font-size: 1.1rem;
   color: @text-primary;
   text-decoration: none;
@@ -121,6 +146,7 @@ nav.navbar
 
 .search-bar {
   position: relative;
+  margin-left: 5px;
 }
 
 .search {
@@ -131,7 +157,9 @@ nav.navbar
   border: none;
   line-height: 1.5;
   height: 40px;
-  width: 200px;
+  min-width: 200px;
+  width: 100%;
+  max-width: 300px;
   padding-left: 40px;
   font-size: 1.2rem;
 }
@@ -154,10 +182,11 @@ nav.navbar
 }
 
 .completed-tasks {
-  display: inline-block;
+  display: block;
   margin: 0px 5px;
   font-size: 1.2rem;
   cursor: pointer;
+  min-width: max-content;
 }
 
 @media only screen and (max-width: 700px) {
