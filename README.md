@@ -63,7 +63,9 @@ Implement a responsive web UI following the specifications below:
 ## Overview
 
 Simple Todo list web app. 
+
 Frontend: [Deployed on Render.](https://todoist-task.onrender.com/)
+
 Backend: [Deployed on Render.](https://todoist-be.onrender.com/)
 
 ## Built with
@@ -112,4 +114,4 @@ Backend: [Deployed on Render.](https://todoist-be.onrender.com/)
 
 ## Author
 
-Made by [Ha Anna](https://haanna.com/).
+Coded by [Ha Anna](https://haanna.com/).
