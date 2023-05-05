@@ -14,7 +14,12 @@ const closePopup = () => {
 }
 
 watch(() => props.todoMarked, (value) => {
-  marked.value = value;
+  if (value.bool) {
+    marked.value = value;
+    setTimeout(() => {
+      marked.value = false;
+    }, 2000);
+    }
 });
 
 onMounted(() => {
@@ -45,6 +50,7 @@ onMounted(() => {
   width: 300px;
   height: 50px;
   font-size: 1rem;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .hidden {

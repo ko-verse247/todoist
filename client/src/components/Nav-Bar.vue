@@ -62,7 +62,7 @@ nav.navbar
       span.visually-hidden 통계
     .completed-tasks.tooltip
       p {{ completedCount }} / {{ +incompleteCount + +completedCount }}
-      span.tooltiptext {{completedCount == +incompleteCount + +completedCount ? '다 됐습니다! 수고하셨습니다!' : '할 수 있어요!'}}
+      span.tooltiptext {{completedCount == +incompleteCount + +completedCount ? '다 됐습니다! 수고하셨습니다!' : '할 수 있습니다!'}}
     button.btn-nav.dropdown
       .dropdown-content.right.ask
         p.dropdown-text 질문이 있으세요?

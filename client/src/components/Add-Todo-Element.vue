@@ -1,6 +1,5 @@
 <script setup>
 import addRedIcon from "../assets/icons/add-red-icon.svg";
-import Placeholder from './Placeholder-Element.vue';
 import { ref, defineProps } from 'vue';
 import axios from 'axios';
 
@@ -30,23 +29,19 @@ const submitNewTodo = () => {
 
 <template lang="pug">
 .add-todo-container
-  transition(name="fade")
+  Transition(name="fade")
     .add-container(v-if="!addTodo")
       button.add-btn(type="button" @click="addTodo = true")
         addRedIcon.icon(alt="") 
         span 작업 추가
-  transition(name="slide-up")
+  Transition(name="fade")
     .input-container(v-if="addTodo")
       input.todo-input(type="text" placeholder="예. 매일 독서 p3 @목표#공부" v-model="inputValue")
       button.add-todo(type="button" :disabled="inputValue === ''" @click="submitNewTodo") 작업 추가
       button.cancel-todo(@click="addTodo = false") 취소
-transition(name="fade")
-  Placeholder(v-if="todos.length < 1")
 </template>
 
 <style lang="less">
-@import "@/assets/styles/tdl-animation.less";
-
 .add-todo-container {
   text-align: left;
   align-self: flex-start;
