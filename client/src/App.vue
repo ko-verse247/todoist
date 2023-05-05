@@ -1,7 +1,7 @@
 <script setup>
 import Nav from './components/Nav-Bar.vue'
 import TodoList from './components/Todo-List.vue'
-import { ref, onMounted, computed} from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import axios from 'axios';
 
 const todos = ref([]);

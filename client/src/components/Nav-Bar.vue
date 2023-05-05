@@ -8,34 +8,26 @@ import infoIcon from "../assets/icons/info-icon.svg"
 import bellIcon from "../assets/icons/bell-icon.svg"
 import userIcon from "../assets/icons/user-icon.svg"
 import searchIcon from "../assets/icons/search-icon.svg"
-import { watchEffect } from 'vue'
 
 const props = defineProps({
-  completedCount: { type: String, required: true },
-  incompleteCount: { type: String, required: true }
+  completedCount: { type: Number, required: true },
+  incompleteCount: { type: Number, required: true }
 })
 
 const fireConfetti = () => {
   const jsConfetti = new JSConfetti()
-  if(props.completedCount == +props.incompleteCount + +props.completedCount) {
+  if(props.completedCount === props.incompleteCount + props.completedCount) {
     jsConfetti.addConfetti({
-      emojiSize: 50,
+      emojiSize: 70,
       emojis: ['✅', '🔥', '💥', '✨', '💫', '🎉'],
     })
   } else {
     jsConfetti.addConfetti({
-      emojiSize: 50,
+      emojiSize: 70,
       emojis: ['❗', '⏱️', '⏳', '', '👀', '🤔'],
     })
   }
 }
-
-watchEffect(() => {
-  if (props.completedCount == +props.incompleteCount + +props.completedCount) {
-    fireConfetti();
-  }
-})
-
 </script>
 
 <template lang="pug">

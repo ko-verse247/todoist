@@ -6,11 +6,13 @@ import AddTodo from "./Add-Todo-Element.vue"
 import DateHeader from './Date-Header.vue'
 import Popup from './Popup-Element.vue';
 import axios from 'axios';
+import { ref } from 'vue'
 
 const props = defineProps({
   todos: { type: Array, required: true },
   fetchTodos: { type: Function, required: true }
 });
+const todoMarked = ref({id: '', bool: false})
 
 const deleteTodo = async (id) => {
   try {
@@ -25,6 +27,7 @@ const markTodo = async (id, bool) => {
   try {
     const response = await axios.patch(`https://tdl-be.onrender.com/api/todos/${id}`, { completed: bool });
     props.fetchTodos();
+    todoMarked.value = {id: id, bool: bool}
   } catch (error) {
     console.log(error);
   }
@@ -48,7 +51,7 @@ DateHeader()
         deleteIcon.icon(alt="")
         span.visually-hidden 삭제
   AddTodo(:todos="todos" :fetchTodos="fetchTodos")
-Popup
+Popup(:todos="todos" :todoMarked="todoMarked")
 </template>
 
 <style lang="less">
@@ -82,7 +85,7 @@ Popup
 
 .mark-btn {
   background: none;
-  margin:0;
+  margin: 0;
   padding: 0;
 }
 
@@ -93,7 +96,7 @@ Popup
   transition: opacity 300ms ease-in-out;
 }
 
-.todo-item:hover > .delete-btn {
+.todo-item:hover>.delete-btn {
   opacity: 1;
 }
 
@@ -101,10 +104,12 @@ Popup
   color: @text-faded;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
+
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
-}
-</style>
+}</style>
