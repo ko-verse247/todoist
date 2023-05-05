@@ -14,6 +14,8 @@ Simple Todo list web app.
 - PUG
 - Less
 - Day.js
+- js-confetti
+- Axios
 
 
 ## Backend (server)

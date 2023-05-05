@@ -2,9 +2,10 @@
 </script>
 
 <template lang="pug">
-.placeholder
-  p.primary 할 일이 없습니다
-  p.secondary 남은 하루도 즐겁게 보내세요.
+Transition(name="fade")
+  .placeholder
+    p.primary 할 일이 없습니다
+    p.secondary 남은 하루도 즐겁게 보내세요.
 </template>
 
 <style lang="less">
