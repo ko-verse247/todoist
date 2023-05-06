@@ -1,4 +1,6 @@
 <script>
+import axios from '../api/api';
+
 export default {
   name: 'Items',
   props: {
@@ -17,16 +19,27 @@ export default {
   },
   methods: {
     deleteItem(id) {
-      this.$store.commit('deleteItem', { id });
+      axios.delete(`/api/todo/${id}/delete`)
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     },
     changeCheck() {
       this.item.completed = !this.item.completed;
       this.$emit('update-snackbar', this.item.completed);
-      this.$store.commit('updateItem', {
-        id: this.item.id,
+      axios.put(`/api/todo/${this.item._id}/update`, {
+        title: this.item.title,
         completed: this.item.completed,
-        title: this.item.title
-      });
+      })
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
   },
   computed: {
@@ -63,7 +76,7 @@ export default {
         v-show="showDelete"
         prepend-icon="mdi-trash-can-outline"
         variant="plain"
-        v-on:click="deleteItem(item.id)"
+        v-on:click="deleteItem(item._id)"
         class="mt-2 ps-0 pe-0"
       >
         <template v-slot:prepend>
