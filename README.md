@@ -58,7 +58,7 @@ Implement a responsive web UI following the specifications below:
 
 ---
 
-# Todoist README by Ha Anna [May 5th, 2023]
+# Todoist README by Ha Anna [May 6th, 2023]
 
 ## Overview
 
