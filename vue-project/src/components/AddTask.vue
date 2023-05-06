@@ -1,4 +1,5 @@
 <script>
+import axios from '../api/api';
 
 export default {
   name: 'AddTask',
@@ -15,11 +16,16 @@ export default {
       if (this.title.trim() === '') {
         return;
       }
-      this.$store.commit('addItem', {
-        title: this.title,
+      axios.post('/api/todo/create', {
         completed: false,
-        id: this.$store.state.items.length + 1
-      });
+        title: this.title
+      })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
       this.title = '';
       this.isTaskBeingAdded = false;
     },
