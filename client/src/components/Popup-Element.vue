@@ -1,27 +1,30 @@
 <script setup>
-import CancelIcon from "../assets/icons/cancel-icon.svg";
-import { ref, watch, onMounted } from 'vue';
+import CancelIcon from '../assets/icons/cancel-icon.svg'
+import { ref, watch, onMounted } from 'vue'
 
 const props = defineProps({
   todos: { type: Array, required: true },
   todoMarked: { type: Object, required: true },
   handleUnmarkTodo: { type: Function, required: true }
-});
+})
 
-const marked = ref(props.todoMarked);
+const marked = ref(props.todoMarked)
 
-watch(() => props.todoMarked, (value) => {
-  if (value.bool) {
-    marked.value = value;
-    setTimeout(() => {
-      marked.value = false;
-    }, 2000);
+watch(
+  () => props.todoMarked,
+  (value) => {
+    if (value.bool) {
+      marked.value = value
+      setTimeout(() => {
+        marked.value = false
+      }, 2000)
     }
-});
+  }
+)
 
 onMounted(() => {
-  marked.value = false;
-});
+  marked.value = false
+})
 </script>
 
 <template lang="pug">
@@ -71,6 +74,6 @@ onMounted(() => {
 }
 
 .cancel-text {
-  color: @popup-cancel-text
+  color: @popup-cancel-text;
 }
 </style>

@@ -2,23 +2,23 @@
 import Nav from './components/Nav-Bar.vue'
 import TodoList from './components/Todo-List.vue'
 import { ref, onMounted, computed } from 'vue'
-import axios from 'axios';
+import axios from 'axios'
 
-const todos = ref([]);
-const completedCount = computed(() => todos.value.filter(todo => todo.completed).length)
-const incompleteCount = computed(() => todos.value.filter(todo => !todo.completed).length)
+const todos = ref([])
+const completedCount = computed(() => todos.value.filter((todo) => todo.completed).length)
+const incompleteCount = computed(() => todos.value.filter((todo) => !todo.completed).length)
 
 const fetchTodos = async () => {
   try {
-    const response = await axios.get('https://tdl-be.onrender.com/api/todos');
-    todos.value = response.data;
+    const response = await axios.get('https://tdl-be.onrender.com/api/todos')
+    todos.value = response.data
   } catch (error) {
-    console.log(error);
-  };
-};
+    console.log(error)
+  }
+}
 
 onMounted(() => {
-  fetchTodos();
+  fetchTodos()
 })
 </script>
 

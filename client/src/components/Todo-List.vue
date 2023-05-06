@@ -1,53 +1,55 @@
 <script setup>
-import deleteIcon from "../assets/icons/delete-icon.svg";
-import checkEmptyIcon from "../assets/icons/check-empty-icon.svg";
-import checkDoneIcon from "../assets/icons/check-done-icon.svg";
-import Placeholder from './Placeholder-Element.vue';
-import AddTodo from "./Add-Todo-Element.vue"
+import deleteIcon from '../assets/icons/delete-icon.svg'
+import checkEmptyIcon from '../assets/icons/check-empty-icon.svg'
+import checkDoneIcon from '../assets/icons/check-done-icon.svg'
+import Placeholder from './Placeholder-Element.vue'
+import AddTodo from './Add-Todo-Element.vue'
 import DateHeader from './Date-Header.vue'
-import Popup from './Popup-Element.vue';
-import axios from 'axios';
+import Popup from './Popup-Element.vue'
+import axios from 'axios'
 import { ref, onMounted } from 'vue'
-import { FadeLoader } from "vue3-spinner";
+import { FadeLoader } from 'vue3-spinner'
 
 const props = defineProps({
   todos: { type: Array, required: true },
   fetchTodos: { type: Function, required: true }
-});
+})
 
-const todoMarked = ref({id: '', bool: false})
+const todoMarked = ref({ id: '', bool: false })
 const loading = ref(true)
 
 const deleteTodo = async (id) => {
   try {
-    const response = await axios.delete(`https://tdl-be.onrender.com/api/todos/${id}`);
-    props.fetchTodos();
+    const response = await axios.delete(`https://tdl-be.onrender.com/api/todos/${id}`)
+    props.fetchTodos()
   } catch (error) {
-    console.log(error);
-  };
-};
+    console.log(error)
+  }
+}
 
 const markTodo = async (id, bool) => {
   try {
-    const response = await axios.patch(`https://tdl-be.onrender.com/api/todos/${id}`, { completed: bool });
-    props.fetchTodos();
-    todoMarked.value = {id: id, bool: bool}
+    const response = await axios.patch(`https://tdl-be.onrender.com/api/todos/${id}`, {
+      completed: bool
+    })
+    props.fetchTodos()
+    todoMarked.value = { id: id, bool: bool }
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 }
 
 const handleUnmarkTodo = () => {
-  const todo = props.todos.find(todo => todo._id === todoMarked.value.id);
+  const todo = props.todos.find((todo) => todo._id === todoMarked.value.id)
   if (todo) {
-    markTodo(todo._id, false);
+    markTodo(todo._id, false)
   }
-};
+}
 
 onMounted(() => {
   setTimeout(() => {
-    loading.value = false;
-    }, 2000);
+    loading.value = false
+  }, 2000)
 })
 </script>
 
