@@ -79,6 +79,7 @@ Backend: [Deployed on Render.](https://todoist-be.onrender.com/)
 - js-confetti
 - Axios
 - vue3-spinner
+- Vue Router
 
 ### Backend (server)
 
