@@ -4,8 +4,9 @@ import App from './App.vue'
 const routes = [
   { path: '/', component: App },
   {
-    path: '/:pathMatch(.*)*',
+    path: '/:catchAll(.*)',
     redirect: '/',
+    component: App
   },
 ]
 
