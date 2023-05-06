@@ -1,5 +1,6 @@
 
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
@@ -16,6 +17,7 @@ mongoose
     console.log("CONNECTED TO DATABASE");
   });
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use("/api", todoRoutes);
 
