@@ -1,17 +1,24 @@
 <script>
 import Item from './Item.vue';
-import { mapGetters } from 'vuex';
+import axios from '../api/api';
 
 export default {
   name: "Items",
   components: { Item },
   data() {
     return {
+      items: [],
       snackbar: false,
     }
   },
-  computed: {
-    ...mapGetters(['items']),
+  mounted() {
+    axios.get('/api/todos')
+      .then((res) => {
+        this.items = res.data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   },
   methods: {
     updateSnackbar(value) {
