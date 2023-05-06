@@ -1,13 +1,13 @@
 <script setup>
 import JSConfetti from 'js-confetti'
-import menuIcon from "../assets/icons/menu-icon.svg"
-import homeIcon from "../assets/icons/home-icon.svg"
-import addWhiteIcon from "../assets/icons/add-white-icon.svg"
-import graphIcon from "../assets/icons/graph-icon.svg"
-import infoIcon from "../assets/icons/info-icon.svg"
-import bellIcon from "../assets/icons/bell-icon.svg"
-import userIcon from "../assets/icons/user-icon.svg"
-import searchIcon from "../assets/icons/search-icon.svg"
+import menuIcon from '../assets/icons/menu-icon.svg'
+import homeIcon from '../assets/icons/home-icon.svg'
+import addWhiteIcon from '../assets/icons/add-white-icon.svg'
+import graphIcon from '../assets/icons/graph-icon.svg'
+import infoIcon from '../assets/icons/info-icon.svg'
+import bellIcon from '../assets/icons/bell-icon.svg'
+import userIcon from '../assets/icons/user-icon.svg'
+import searchIcon from '../assets/icons/search-icon.svg'
 
 const props = defineProps({
   completedCount: { type: Number, required: true },
@@ -16,15 +16,15 @@ const props = defineProps({
 
 const fireConfetti = () => {
   const jsConfetti = new JSConfetti()
-  if(props.completedCount === props.incompleteCount + props.completedCount) {
+  if (props.completedCount === props.incompleteCount + props.completedCount) {
     jsConfetti.addConfetti({
       emojiSize: 70,
-      emojis: ['✅', '🔥', '💥', '✨', '💫', '🎉'],
+      emojis: ['✅', '🔥', '💥', '✨', '💫', '🎉']
     })
   } else {
     jsConfetti.addConfetti({
       emojiSize: 70,
-      emojis: ['❗', '⏱️', '⏳', '', '👀', '🤔'],
+      emojis: ['❗', '⏱️', '⏳', '', '👀', '🤔']
     })
   }
 }
@@ -91,7 +91,7 @@ nav.navbar
 </template>
 
 <style lang="less">
-@import "@/assets/styles/dropdown.less";
+@import '@/assets/styles/dropdown.less';
 
 .menu-list {
   list-style-type: none;
@@ -130,7 +130,8 @@ nav.navbar
   min-height: 65px;
 }
 
-.menu-panel, .user-panel {
+.menu-panel,
+.user-panel {
   display: flex;
   align-items: center;
   margin: 0 5px;
@@ -155,7 +156,7 @@ nav.navbar
   font-size: 1rem;
   cursor: pointer;
   min-width: max-content;
-  transform: translatey(-2px)
+  transform: translatey(-2px);
 }
 
 .search-bar {
@@ -178,7 +179,7 @@ nav.navbar
   font-size: 1.2rem;
 }
 
-.search::placeholder{
+.search::placeholder {
   color: @search-text;
   opacity: 1;
 }

@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template lang="pug">
 Transition(name="fade")
@@ -20,6 +19,7 @@ Transition(name="fade")
   color: @text-primary;
   font-size: 1.2rem;
 }
+
 .secondary {
   color: @text-secondary;
   font-size: 1.1rem;

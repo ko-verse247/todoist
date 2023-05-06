@@ -1,7 +1,7 @@
 <script setup>
-import 'dayjs/locale/ko';
-import dayjs from 'dayjs';
-let date = dayjs().locale('ko').format('ddd MMMM D일');
+import 'dayjs/locale/ko'
+import dayjs from 'dayjs'
+let date = dayjs().locale('ko').format('ddd MMMM D일')
 </script>
 
 <template lang="pug">

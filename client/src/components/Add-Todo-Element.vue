@@ -1,29 +1,34 @@
 <script setup>
-import addRedIcon from "../assets/icons/add-red-icon.svg";
-import { ref, defineProps } from 'vue';
-import axios from 'axios';
+import addRedIcon from '../assets/icons/add-red-icon.svg'
+import { ref, defineProps } from 'vue'
+import axios from 'axios'
 
 const props = defineProps({
   todos: { type: Array, required: true },
   fetchTodos: { type: Function, required: true }
-});
+})
 
-const inputValue = ref('');
-const addTodo = ref(false);
+const inputValue = ref('')
+const addTodo = ref(false)
 
 const submitNewTodo = () => {
-  axios.post('https://tdl-be.onrender.com/api/todos', { task: inputValue.value }, {
+  axios
+    .post(
+      'https://tdl-be.onrender.com/api/todos',
+      { task: inputValue.value },
+      {
         headers: {
           'Content-Type': 'application/json'
         }
-      })
-    .then(response => {
-      props.fetchTodos();
-      inputValue.value = "";
+      }
+    )
+    .then((response) => {
+      props.fetchTodos()
+      inputValue.value = ''
     })
-    .catch(error => {
-      console.log(error);
-    });
+    .catch((error) => {
+      console.log(error)
+    })
 }
 </script>
 

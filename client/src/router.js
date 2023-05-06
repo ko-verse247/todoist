@@ -7,12 +7,12 @@ const routes = [
     path: '/:catchAll(.*)',
     redirect: '/',
     component: App
-  },
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 })
 
 export default router
