@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar density="compact" color="#db4c3f">
+  <v-app-bar scroll-behavior="elevate" density="compact" color="#db4c3f">
     <v-app-bar-nav-icon color="#fff"></v-app-bar-nav-icon>
     <v-btn icon>
       <v-icon color="#fff">mdi-home-outline</v-icon>
@@ -35,5 +35,7 @@
     <v-btn icon>
       <v-avatar color="surface-variant"></v-avatar>
     </v-btn>
-  </v-toolbar>
+  </v-app-bar>
+  <br>
+  <br>
 </template>
