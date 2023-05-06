@@ -50,9 +50,9 @@ nav.navbar
       span.visually-hidden 메뉴
     a(href="/" title="홈페이지")
       homeIcon.icon.icon-nav(alt="")
-    div.search-bar
+    .search-bar
       searchIcon.icon.search-icon(alt="")
-      input.search(placeholder="검색" type="text")
+      input.search(placeholder="검색" type="search")
   .user-panel.hidden-on-mobile
     button.btn-nav
       addWhiteIcon.icon.icon-nav(alt="")
@@ -66,6 +66,9 @@ nav.navbar
     button.btn-nav.dropdown
       .dropdown-content.right.ask
         p.dropdown-text 질문이 있으세요?
+        ul.menu-list
+          li
+            a.menu-link(href="") FAQ/문의
       infoIcon.icon.icon-nav(alt="")
       span.visually-hidden FAQ/문의
     button.btn-nav.dropdown
@@ -108,6 +111,7 @@ nav.navbar
   text-decoration: none;
   overflow: hidden;
   font-weight: 400;
+  margin: 0;
 }
 
 .navbar {
@@ -139,6 +143,21 @@ nav.navbar
   padding: 0;
 }
 
+.icon.icon-nav {
+  transform: scale(1);
+  cursor: pointer;
+  margin: 0 3px;
+}
+
+.completed-tasks {
+  display: block;
+  margin: 0 3px;
+  font-size: 1rem;
+  cursor: pointer;
+  min-width: max-content;
+  transform: translatey(-2px)
+}
+
 .search-bar {
   position: relative;
   margin-left: 5px;
@@ -168,21 +187,6 @@ nav.navbar
   position: absolute;
   top: 8px;
   left: 7px;
-}
-
-.icon.icon-nav {
-  transform: scale(1);
-  cursor: pointer;
-  margin: 0 3px;
-}
-
-.completed-tasks {
-  display: block;
-  margin: 0 3px;
-  font-size: 1rem;
-  cursor: pointer;
-  min-width: max-content;
-  transform: translatey(-2px)
 }
 
 @media only screen and (max-width: 499px) {
