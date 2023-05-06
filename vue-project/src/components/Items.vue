@@ -12,15 +12,18 @@ export default {
     }
   },
   mounted() {
-    axios.get('/api/todos')
-      .then((res) => {
-        this.items = res.data;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    this.getItems();
   },
   methods: {
+    getItems() {
+      axios.get('/api/todos')
+        .then((res) => {
+          this.items = res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
     updateSnackbar(value) {
       this.snackbar = value;
     }
@@ -36,6 +39,7 @@ export default {
       :initialItem="item"
       :snackbar="snackbar"
       @update-snackbar="updateSnackbar"
+      @get-items="getItems"
     />
     <v-snackbar v-model="snackbar" timeout="2000" location="left bottom">
       1 작업을 완료했습니다

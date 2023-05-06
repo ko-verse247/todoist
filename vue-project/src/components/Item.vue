@@ -21,6 +21,7 @@ export default {
     deleteItem(id) {
       axios.delete(`/api/todo/${id}/delete`)
         .then((res) => {
+          this.$emit('get-items');
           return res.data;
         })
         .catch((err) => {
@@ -35,6 +36,7 @@ export default {
         completed: this.item.completed,
       })
         .then((res) => {
+          this.$emit('get-items');
           return res.data;
         })
         .catch((err) => {
