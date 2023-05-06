@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     updateSnackbar(value) {
-        this.snackbar = value;
+      this.snackbar = value;
     }
   }
 }
@@ -32,7 +32,7 @@ export default {
   <v-container>
     <Item
       v-for="item in items"
-      :key="item.id"
+      :key="item._id"
       :initialItem="item"
       :snackbar="snackbar"
       @update-snackbar="updateSnackbar"
