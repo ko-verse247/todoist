@@ -2,8 +2,7 @@
 import Header from './components/Header.vue'
 import PageWrapper from './components/PageWrapper.vue'
 import Date from './components/Date.vue'
-import Items from './components/Items.vue'
-import AddTask from './components/AddTask.vue'
+import Todo from './components/Todo.vue'
 </script>
 
 <template>
@@ -12,8 +11,7 @@ import AddTask from './components/AddTask.vue'
     <main>
       <PageWrapper>
         <Date />
-        <Items />
-        <AddTask />
+        <Todo />
       </PageWrapper>
     </main>
   </v-app>

@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 function updateLocalStorage(items) {
   localStorage.setItem("items", JSON.stringify(items));
 }
-  
+
 export const store = createStore({
   state () {
     return {

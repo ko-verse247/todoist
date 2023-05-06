@@ -22,12 +22,13 @@ export default {
       })
         .then((response) => {
           console.log(response.data);
+          this.title = '';
+          this.isTaskBeingAdded = false;
+          this.$emit('get-items');
         })
         .catch((error) => {
           console.error(error);
         });
-      this.title = '';
-      this.isTaskBeingAdded = false;
     },
     startAddingTask() {
       this.isTaskBeingAdded = true;

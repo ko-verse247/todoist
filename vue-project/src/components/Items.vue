@@ -1,28 +1,24 @@
 <script>
 import Item from './Item.vue';
-import axios from '../api/api';
 
 export default {
   name: "Items",
   components: { Item },
-  data() {
-    return {
-      items: [],
-      snackbar: false,
+  props: {
+    items: {
+      type: Array,
+      required: true
     }
   },
-  mounted() {
-    this.getItems();
+  data() {
+    return {
+      snackbar: false,
+      localItems: [...this.items]
+    }
   },
   methods: {
     getItems() {
-      axios.get('/api/todos')
-        .then((res) => {
-          this.items = res.data;
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      this.$emit('get-items');
     },
     updateSnackbar(value) {
       this.snackbar = value;
@@ -34,7 +30,7 @@ export default {
 <template>
   <v-container>
     <Item
-      v-for="item in items"
+      v-for="item in localItems"
       :key="item._id"
       :initialItem="item"
       :snackbar="snackbar"
