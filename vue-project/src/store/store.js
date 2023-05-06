@@ -14,14 +14,7 @@ export const store = createStore({
     items: (state) => {
       return state.items;
     },
-    completedItems: (state) => {
-      return state.items.filter((item) => item.completed);
-    },
-    totalCompletedItems: (state, getters) => {
-      return getters.completedItems.length;
-    },
   },
-
   mutations: {
     addItem (state, payload) {
       state.items.push(payload);
