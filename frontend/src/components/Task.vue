@@ -57,7 +57,6 @@ export default {
 
 <template>
   <v-row
-    name="item-row"
     justify="end"
     v-on:mouseover="showDelete=true"
     v-on:mouseleave="showDelete=false"

@@ -69,7 +69,6 @@ export default {
         <v-btn
           :disabled="!form"
           type="submit"
-          id='butAdd'
           variant="outlined"
           color="#db4c3f"
           class="mr-4"
