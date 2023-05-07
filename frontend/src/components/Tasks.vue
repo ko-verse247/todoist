@@ -1,9 +1,9 @@
 <script>
-import Item from './Item.vue';
+import Task from './Task.vue';
 
 export default {
-  name: "Items",
-  components: { Item },
+  name: "Tasks",
+  components: { Task },
   props: {
     items: {
       type: Array,
@@ -29,7 +29,7 @@ export default {
 
 <template>
   <v-container>
-    <Item
+    <Task
       v-for="item in localItems"
       :key="item._id"
       :initialItem="item"

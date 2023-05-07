@@ -2,7 +2,7 @@
 import axios from '../api/api';
 
 export default {
-  name: 'Items',
+  name: 'Item',
   props: {
     initialItem: {
       type: Object,

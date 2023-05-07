@@ -1,11 +1,11 @@
 <script>
-import Items from './Items.vue';
+import Tasks from './Tasks.vue';
 import AddTask from './AddTask.vue';
 import axios from '../api/api';
 
 export default {
   name: 'Todo',
-  components: { Items, AddTask },
+  components: { Tasks, AddTask },
   data() {
     return {
       items: [],
@@ -29,6 +29,6 @@ export default {
 </script>
 
 <template>
-  <Items :key="items" :items="items" @get-items="getItems" />
+  <Tasks :key="items" :items="items" @get-items="getItems" />
   <AddTask @get-items="getItems" />
 </template>
