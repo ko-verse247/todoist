@@ -11,8 +11,10 @@ const todoRoutes = require("./routes/Todo");
 
 const app = express();
 
+const uri = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : "mongodb://127.0.0.1:27017/todoapp";
+
 mongoose
-  .connect("mongodb://127.0.0.1:27017/todoapp", {
+  .connect(uri, {
   })
   .then(() => {
     console.log("CONNECTED TO DATABASE");
