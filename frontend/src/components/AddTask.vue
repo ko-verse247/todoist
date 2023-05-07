@@ -24,7 +24,7 @@ export default {
           console.log(response.data);
           this.title = '';
           this.isTaskBeingAdded = false;
-          this.$emit('get-items');
+          this.$emit('get-tasks');
         })
         .catch((error) => {
           console.error(error);

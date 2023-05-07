@@ -8,17 +8,17 @@ export default {
   components: { Tasks, AddTask },
   data() {
     return {
-      items: [],
+      tasks: [],
     };
   },
   mounted() {
-    this.getItems();
+    this.getTasks();
   },
   methods: {
-    getItems() {
+    getTasks() {
       axios.get('/api/todos')
         .then((res) => {
-          this.items = res.data;
+          this.tasks = res.data;
         })
         .catch((err) => {
           console.error(err);
@@ -29,6 +29,6 @@ export default {
 </script>
 
 <template>
-  <Tasks :key="items" :items="items" @get-items="getItems" />
-  <AddTask @get-items="getItems" />
+  <Tasks :key="tasks" :tasks="tasks" @get-tasks="getTasks" />
+  <AddTask @get-tasks="getTasks" />
 </template>

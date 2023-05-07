@@ -2,9 +2,9 @@
 import axios from '../api/api';
 
 export default {
-  name: 'Item',
+  name: 'Task',
   props: {
-    initialItem: {
+    initialTask: {
       type: Object,
       required: true
     },
@@ -13,15 +13,15 @@ export default {
   data() {
     return {
       checkboxIcon: 'mdi-circle-outline',
-      item: { ...this.initialItem },
+      task: { ...this.initialTask },
       showDelete: false,
     };
   },
   methods: {
-    deleteItem(id) {
+    deleteTask(id) {
       axios.delete(`/api/todo/${id}/delete`)
         .then((res) => {
-          this.$emit('get-items');
+          this.$emit('get-tasks');
           return res.data;
         })
         .catch((err) => {
@@ -29,14 +29,14 @@ export default {
         });
     },
     changeCheck() {
-      this.item.completed = !this.item.completed;
-      this.$emit('update-snackbar', this.item.completed);
-      axios.put(`/api/todo/${this.item._id}/update`, {
-        title: this.item.title,
-        completed: this.item.completed,
+      this.task.completed = !this.task.completed;
+      this.$emit('update-snackbar', this.task.completed);
+      axios.put(`/api/todo/${this.task._id}/update`, {
+        title: this.task.title,
+        completed: this.task.completed,
       })
         .then((res) => {
-          this.$emit('get-items');
+          this.$emit('get-tasks');
           return res.data;
         })
         .catch((err) => {
@@ -46,10 +46,10 @@ export default {
   },
   computed: {
     labelClass() {
-      return this.item.completed ? "mr-2 checked" : "mr-2";
+      return this.task.completed ? "mr-2 checked" : "mr-2";
     },
     checkboxIconClass() {
-      return this.item.completed ? 'mdi-check-circle-outline' : 'mdi-circle-outline';
+      return this.task.completed ? 'mdi-check-circle-outline' : 'mdi-circle-outline';
     }
   }
 }
@@ -64,8 +64,8 @@ export default {
   >
     <v-col cols="10">
       <v-checkbox
-        :label="item.title"
-        v-bind:checked="item.completed"
+        :label="task.title"
+        v-bind:checked="task.completed"
         v-on:change="changeCheck"
         :false-icon="checkboxIconClass"
         :true-icon="checkboxIconClass"
@@ -78,7 +78,7 @@ export default {
         v-show="showDelete"
         prepend-icon="mdi-trash-can-outline"
         variant="plain"
-        v-on:click="deleteItem(item._id)"
+        v-on:click="deleteTask(task._id)"
         class="mt-2 ps-0 pe-0"
       >
         <template v-slot:prepend>

@@ -1,35 +1,35 @@
 import { createStore } from 'vuex'
 
-function updateLocalStorage(items) {
-  localStorage.setItem("items", JSON.stringify(items));
+function updateLocalStorage(tasks) {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 export const store = createStore({
   state () {
     return {
-      items: JSON.parse(localStorage.getItem("items")) || [],
+      tasks: JSON.parse(localStorage.getItem("tasks")) || [],
     }
   },
   getters: {
-    items: (state) => {
-      return state.items;
+    tasks: (state) => {
+      return state.tasks;
     },
   },
   mutations: {
-    addItem (state, payload) {
-      state.items.push(payload);
-      updateLocalStorage(state.items);
+    addTask (state, payload) {
+      state.tasks.push(payload);
+      updateLocalStorage(state.tasks);
     },
-    updateItem: (state, payload) => {
-      const index = state.items.findIndex((item) => item.id === payload.id);
-      state.items[index].completed = payload.completed;
-      state.items[index].title = payload.title;
-      updateLocalStorage(state.items);
+    updateTask: (state, payload) => {
+      const index = state.tasks.findIndex((task) => task.id === payload.id);
+      state.tasks[index].completed = payload.completed;
+      state.tasks[index].title = payload.title;
+      updateLocalStorage(state.tasks);
     },
-    deleteItem: (state, payload) => {
-      const index = state.items.findIndex((item) => item.id === payload.id);
-      if (index > -1) state.items.splice(index, 1);
-      updateLocalStorage(state.items);
+    deleteTask: (state, payload) => {
+      const index = state.tasks.findIndex((task) => task.id === payload.id);
+      if (index > -1) state.tasks.splice(index, 1);
+      updateLocalStorage(state.tasks);
     },
   }
 })

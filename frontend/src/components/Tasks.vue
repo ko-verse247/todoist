@@ -2,10 +2,10 @@
 import Task from './Task.vue';
 
 export default {
-  name: "Tasks",
+  name: 'Tasks',
   components: { Task },
   props: {
-    items: {
+    tasks: {
       type: Array,
       required: true
     }
@@ -13,12 +13,12 @@ export default {
   data() {
     return {
       snackbar: false,
-      localItems: [...this.items]
+      localTasks: [...this.tasks]
     }
   },
   methods: {
-    getItems() {
-      this.$emit('get-items');
+    getTasks() {
+      this.$emit('get-tasks');
     },
     updateSnackbar(value) {
       this.snackbar = value;
@@ -30,12 +30,12 @@ export default {
 <template>
   <v-container>
     <Task
-      v-for="item in localItems"
-      :key="item._id"
-      :initialItem="item"
+      v-for="task in localTasks"
+      :key="task._id"
+      :initialTask="task"
       :snackbar="snackbar"
       @update-snackbar="updateSnackbar"
-      @get-items="getItems"
+      @get-tasks="getTasks"
     />
     <v-snackbar v-model="snackbar" timeout="2000" location="left bottom">
       1 작업을 완료했습니다
