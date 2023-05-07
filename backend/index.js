@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const port = 8000;
 
@@ -16,6 +17,8 @@ mongoose
   .then(() => {
     console.log("CONNECTED TO DATABASE");
   });
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 app.use(cors());
 app.use(bodyParser.json());
