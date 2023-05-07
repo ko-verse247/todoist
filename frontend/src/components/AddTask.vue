@@ -21,7 +21,6 @@ export default {
         title: this.title
       })
         .then((response) => {
-          console.log(response.data);
           this.title = '';
           this.isTaskBeingAdded = false;
           this.$emit('get-tasks');
