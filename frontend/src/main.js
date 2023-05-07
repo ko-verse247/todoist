@@ -11,8 +11,6 @@ import './assets/main.css'
 import { aliases, mdi } from "vuetify/lib/iconsets/mdi";
 import "@mdi/font/css/materialdesignicons.css";
 
-import { store } from "./store/store.js"
-
 const vuetify = createVuetify({
   icons: {
     defaultSet: "mdi",
@@ -25,4 +23,4 @@ const vuetify = createVuetify({
   directives,
 })
 
-createApp(App).use(vuetify).use(store).mount('#app')
+createApp(App).use(vuetify).mount('#app')

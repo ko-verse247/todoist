@@ -1,3 +1,4 @@
+// Currently this file is not being used, it was created to test local state before implementing the backend
 import { createStore } from 'vuex'
 
 function updateLocalStorage(tasks) {
