@@ -1,8 +1,25 @@
 <script>
 export default {
+  data() {
+    return {
+      windowWidth: 0
+    };
+  },
   computed: {
     isMobile() {
-      return window.innerWidth <= 600;
+      return this.windowWidth <= 600;
+    }
+  },
+  mounted() {
+    this.windowWidth = window.innerWidth;
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      this.windowWidth = window.innerWidth;
     }
   }
 }
