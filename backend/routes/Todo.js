@@ -3,9 +3,9 @@ const router = express.Router();
 
 const {
   getAllTodos,
-	createTodo,
+  createTodo,
   updateTodo,
-	deleteTodo,
+  deleteTodo,
 } = require("../controllers/Todo");
 
 router.get("/todos", getAllTodos);
