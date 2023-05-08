@@ -59,6 +59,7 @@ export default {
           v-model="title"
           v-on:keyup.enter="handleSubmit"
           type="text"
+          placeholder="예. 매일 독서 p3 @목표#공부"
           variant="outlined"
           density="compact"
           class="rounded-lg"
