@@ -81,7 +81,7 @@ export default {
         class="mt-2 ps-0 pe-0"
       >
         <template v-slot:prepend>
-          <v-icon color="#db4c3f"></v-icon>
+          <v-icon color="#CB5647"></v-icon>
         </template>
       </v-btn>
     </v-col>

@@ -45,7 +45,7 @@ export default {
     <div v-if="!isTaskBeingAdded">
       <v-btn prepend-icon="mdi-plus" variant="plain" v-on:click="startAddingTask">
         <template v-slot:prepend>
-          <v-icon color="#db4c3f"></v-icon>
+          <v-icon color="#CB5647"></v-icon>
         </template>
         <div class="text-left">작업 추가</div>
       </v-btn>
@@ -69,8 +69,8 @@ export default {
         <v-btn
           :disabled="!form"
           type="submit"
-          variant="outlined"
-          color="#db4c3f"
+          color="#CB5647"
+          style="color: #fff"
           class="mr-4"
         >
           작업 추가
