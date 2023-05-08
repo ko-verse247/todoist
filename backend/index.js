@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 const todoRoutes = require("./routes/Todo");
 
