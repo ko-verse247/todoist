@@ -1,6 +1,6 @@
 <script setup>
 import addRedIcon from '../assets/icons/add-red-icon.svg'
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 
 const props = defineProps({
@@ -14,7 +14,7 @@ const addTodo = ref(false)
 const submitNewTodo = () => {
   axios
     .post(
-      'https://tdl-be.onrender.com/api/todos',
+      'https://todoist-anna-production.up.railway.app/api/todos',
       { task: inputValue.value },
       {
         headers: {
