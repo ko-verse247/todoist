@@ -1,9 +1,8 @@
-import "dotenv/config.js";
-import express from "express";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import cors from "cors";
-import { router as todosRoutes } from "./routes/todos.js";
+import 'dotenv/config.js';
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import { router as todosRoutes } from './routes/todos.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,17 +19,11 @@ const connectDB = async () => {
 
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
-
-app.use("/api/todos", todosRoutes);
+app.use('/api/todos', todosRoutes);
 
 connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log("listening for requests");
-    });
+  app.listen(PORT, () => {
+    console.log('listening for requests on ' + PORT);
+  });
 });
