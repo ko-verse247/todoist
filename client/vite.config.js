@@ -6,20 +6,17 @@ import svgLoader from 'vite-svg-loader'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    svgLoader()
-  ],
+  plugins: [vue(), svgLoader()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
   css: {
-  preprocessorOptions: {
-    less: {
-      additionalData: `@import "@/assets/styles/global.less";`
+    preprocessorOptions: {
+      less: {
+        additionalData: `@import "@/assets/styles/global.less"; @import "@/assets/styles/destyle.less";`
+      }
     }
   }
-},
 })

@@ -20,7 +20,7 @@ const loading = ref(true)
 
 const deleteTodo = async (id) => {
   try {
-    const response = await axios.delete(`https://tdl-be.onrender.com/api/todos/${id}`)
+    const response = await axios.delete(`https://todoist-anna-production.up.railway.app/api/todos/${id}`)
     props.fetchTodos()
   } catch (error) {
     console.log(error)
@@ -29,7 +29,7 @@ const deleteTodo = async (id) => {
 
 const markTodo = async (id, bool) => {
   try {
-    const response = await axios.put(`https://tdl-be.onrender.com/api/todos/${id}`, {
+    const response = await axios.put(`https://todoist-anna-production.up.railway.app/api/todos/${id}`, {
       completed: bool
     })
     props.fetchTodos()
