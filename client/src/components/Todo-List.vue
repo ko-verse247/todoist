@@ -29,7 +29,7 @@ const deleteTodo = async (id) => {
 
 const markTodo = async (id, bool) => {
   try {
-    const response = await axios.patch(`https://tdl-be.onrender.com/api/todos/${id}`, {
+    const response = await axios.put(`https://tdl-be.onrender.com/api/todos/${id}`, {
       completed: bool
     })
     props.fetchTodos()
