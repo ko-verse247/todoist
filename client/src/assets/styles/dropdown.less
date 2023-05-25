@@ -1,0 +1,56 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  background: @bg;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 47px;
+  min-width: 350px;
+  width: 100%;
+  max-width: 500px;
+  transition: 1s; 
+  text-align: left;
+}
+
+.dropdown-content.left {
+  border-right: @popup-border;
+  border-bottom: @popup-border;
+  border-bottom-right-radius: @popup-border-radius;
+  left: -20px;
+}
+
+.dropdown-content.right {
+  border-left: @popup-border;
+  border-bottom: @popup-border;
+  border-bottom-left-radius: @popup-border-radius;
+}
+
+.dropdown-content.right.ask {right: -150px}
+.dropdown-content.right.notif {right: -90px}
+.dropdown-content.right.user {right: -25px}
+
+.dropdown-content .menu-link:hover {
+  background-color: @accent;
+  color: @text-nav;
+}
+
+.dropdown:hover .dropdown-content {
+  opacity:1; 
+  visibility: visible;
+}
+
+.dropdown-text {
+  font-size: 1.1rem;
+  padding: 5px 20px;
+  color: @text-primary;
+  font-weight: 400;
+}
+
+.notif .dropdown-text {
+  text-align: center;
+  color: @text-faded;
+}

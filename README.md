@@ -54,3 +54,64 @@ Implement a responsive web UI following the specifications below:
 - The time limit is 5 days.
 
 ### 수고하세요!
+
+
+---
+
+# Todoist README by Ha Anna [May 6th, 2023]
+
+## Overview
+
+Simple Todo list web app. 
+
+Frontend: [Deployed on Render.](https://todoist-task.onrender.com/)
+
+Backend: [Deployed on Render.](https://todoist-be.onrender.com/)
+
+## Built with
+
+### Frontend (client)
+
+- Vue.js
+- PUG
+- Less
+- Day.js
+- js-confetti
+- Axios
+- vue3-spinner
+
+### Backend (server)
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Nodemon
+- dotenv
+- Prettier
+- ESLint
+
+## Features
+
+- Users can add a new task by clicking “+ 작업 추가” button;
+    - Clicking discloses hidden input field and submit button (red 작업 추가 button), and a cancel button to undisclose it back.
+- Users can delete the task they have added;
+    - The trash button on the right side of the list is initially hidden;
+    - Hovering the cursor over the list item makes the trash button visible.
+- Users can mark their tasks as ‘completed’ by clicking in the circle on the left side;
+    - A toast message saying “1 작업을 완료했습니다” pops up;
+    - A toast message automatically disappears after 2 seconds
+    - Marking can be reversed by 실행 최소
+- Webpage is responsive
+- There is an incomplete/complete tasks counter
+    - Based on completion there is a popup message to motivate/congratulate the user when they hover over the counter
+- Spinner added for smoother transition while waiting for db response
+- Hidden suprise confetti in the menu
+    - When the counter is clicked in the menu dropdown, confetti will appear
+    - Confetti design will differ depending on the task completion status
+- Dropdowns with dummy links in the Nav Bar
+- Added visually-hidden elements for the NavBar for better accessibility 
+
+## Author
+
+Coded by [Ha Anna](https://haanna.com/).
