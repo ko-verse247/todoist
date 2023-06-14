@@ -5,7 +5,8 @@ const tasks = ref('');
 const taskInfo = ref('');
 const addTaskDisplay = ref('hidden');
 const addDisable = ref(true);
-const addButtonDisplay = ref('block')
+const addButtonDisplay = ref('block');
+const placeholderText = ref('예. 매일 독서 p3 @목표#공부');
 
 function taskUpdate(taskId) {
     //everytime a task is updated (marked complete or deleted)
@@ -13,12 +14,32 @@ function taskUpdate(taskId) {
     console.log(taskId)
 }
 
+function taskDelete(taskId) {
+
+}
+
+function addTask() {
+    //create new task object
+    var task = {
+        taskId: 5,
+        taskName: taskInfo.value,
+        completed: false
+    }
+    tasks.value.push(task);
+    //update MongoDB with new task also
+
+    
+    addTaskDisplay.value = 'hidden';
+    addButtonDisplay.value = 'inline';
+    taskInfo.value = '';
+}
+
 function displayAddTask() {
     addTaskDisplay.value = 'visible';
     addButtonDisplay.value = 'none';
 }
 
-function hideAddTask() {
+function cancelAddTask() {
     addTaskDisplay.value = 'hidden';
     addButtonDisplay.value = 'inline';
 }
@@ -26,25 +47,22 @@ function hideAddTask() {
 onMounted(() => {
     //fetches task data from MongoDB
     tasks.value = [
-    {
-        taskId: 1,
-        taskName: "Task 1",
-        completed: false,
-        date: new Date()
-    },
-    {
-        taskId: 2,
-        taskName: "Task 2",
-        completed: false,
-        date: new Date()
-    },
-    {
-        taskId: 3,
-        taskName: "Task 3",
-        completed: true,
-        date: new Date()
-    }
-];
+        {
+            taskId: 1,
+            taskName: "Task 1",
+            completed: false
+        },
+        {
+            taskId: 2,
+            taskName: "Task 2",
+            completed: false
+        },
+        {
+            taskId: 3,
+            taskName: "Task 3",
+            completed: true
+        }
+    ];
 })
 </script>
 
@@ -56,24 +74,24 @@ onMounted(() => {
                 button(type="button" @click="taskUpdate(task.taskId)")
                     img(src="@/assets/defaultcheckboxicon.svg")
                 .taskInfo {{ task.taskName }}
-                button
+                button(type="button" @click="taskDelete(task.taskId)")
                     img(src="@/assets/deleteicon.svg")
 
     .addtask
         button(type="button" @click="displayAddTask()" :style="{display: addButtonDisplay}") 
             img(src="@/assets/redaddicon.svg")
         .addtaskinfo(:style="{visibility: addTaskDisplay}")
-            input(v-model="taskInfo" type="text")
+            input(v-model="taskInfo" type="text" :placeholder="placeholderText")
             .addtaskbuttons
-                button 직업 추가
-                button(type="button" @click="hideAddTask()") 취소
+                button(type="button" @click="addTask()") 직업 추가
+                button(type="button" @click="cancelAddTask()") 취소
 
 
     p {{ taskInfo }}
 </template>
 
 <style>
-li{
+li {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -98,5 +116,4 @@ li{
     padding: 8px 0;
     margin-right: 30px;
 }
-
 </style>
