@@ -24,8 +24,9 @@ onMounted(() => {
 
 <template lang="pug">
 .taskheader
-    h1 오늘
-    small {{ day }} {{ month }}월 {{ date }}일
+    .headercontent
+        h1 오늘
+        small {{ day }} {{ month }}월 {{ date }}일
 </template>
 
 <style>
@@ -38,6 +39,28 @@ onMounted(() => {
     padding-left: 55px;
     padding-right: 55px;
     padding-top: 36px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+}
+
+.headercontent {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+}
+
+small {
+    color: grey;
+    margin-left: 6px;
+    font-size: 12px;
+    font-weight: 400;
 }
 
 </style>
