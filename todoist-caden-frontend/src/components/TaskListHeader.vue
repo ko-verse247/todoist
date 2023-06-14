@@ -36,8 +36,6 @@ onMounted(() => {
     top: 0;
     z-index: 2;
     flex-shrink: 0;
-    padding-left: 55px;
-    padding-right: 55px;
     padding-top: 36px;
     margin: 0 auto;
     width: 100%;
