@@ -16,8 +16,9 @@
     .rightbuttons
         button
             img(src="@/assets/addicon.svg")
-        img(src="@/assets/graphicon.svg")
-        span 0/5
+        button
+            img(src="@/assets/graphicon.svg")
+            span 0/5
         button
             img(src="@/assets/infoicon.svg")
         button
@@ -26,12 +27,17 @@
 
 <style scoped>
 .navbar {
-    position: fixed;
-    top: 0px;
-    width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    height: 44px;
+    z-index: 200;
+    padding-left: 18px;
+    padding-right: 18px;
     background-color: var(--todoist-orange);
     display: flex;
+    position: static;
     justify-content: space-between;
+    width: 100%;
 }
 button{
     background-color: var(--todoist-orange);
@@ -40,7 +46,6 @@ button{
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin: 5px;
 }
 
 .searchbar {
