@@ -62,6 +62,7 @@ small {
     margin-left: 6px;
     font-size: 12px;
     font-weight: 400;
+    margin-top: auto;
 }
 
 </style>
