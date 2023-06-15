@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import TaskListItem from './TaskListItem.vue';
+import { getTasks, deleteTask, postTask } from '../TodoistService.js'
 
 const tasks = ref('');
 const taskInfo = ref('');
@@ -13,21 +14,18 @@ const addDisable = computed(() => {
     return taskInfo.value.length == 0;
 })
 
-const count = ref(5);
-
-function taskDelete(taskId) {
-    tasks.value = tasks.value.filter(key => key.taskId != taskId);
+function taskDelete(_id) {
+    tasks.value = tasks.value.filter(key => {return key._id.localeCompare(_id) != 0});
+    deleteTask(_id)
 }
 
 function addTask() {
-    //create new task object
     var task = {
-        taskId: count.value++,
-        taskName: taskInfo.value,
-        completed: false
+        taskName: taskInfo.value
     }
-    tasks.value.push(task);
-    //update MongoDB with new task also
+    postTask(task).then((res) => {
+        tasks.value.push(res);
+    })
 
     addTaskDisplay.value = 'hidden';
     addButtonDisplay.value = 'inline';
@@ -49,23 +47,9 @@ function cancelAddTask() {
 
 onMounted(() => {
     //fetches task data from MongoDB
-    tasks.value = [
-        {
-            taskId: 1,
-            taskName: "Task 1",
-            completed: false
-        },
-        {
-            taskId: 2,
-            taskName: "Task 2",
-            completed: false
-        },
-        {
-            taskId: 3,
-            taskName: "Task 3",
-            completed: true
-        }
-    ];
+    getTasks().then((reqTasks) => {
+        tasks.value = reqTasks
+    })
 })
 </script>
 
@@ -73,7 +57,7 @@ onMounted(() => {
 .tasklistcontent
     .tasklist
         ul
-            TaskListItem(v-for="task in tasks" :task="task" @onDelete="taskDelete(task.taskId)")
+            TaskListItem(v-for="task in tasks" :task="task" @onDelete="taskDelete(task._id)")
         .addTask
             button(type="button" @click="displayAddTask()" :style="{display: addButtonDisplay}") 
                 img(src="@/assets/redaddicon.svg")

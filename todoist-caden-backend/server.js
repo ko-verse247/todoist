@@ -1,7 +1,8 @@
+"use strict";
+
 const express = require("express");
 
-require('dotenv').config
-console.log(process.env)
+require("dotenv").config;
 
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -10,7 +11,8 @@ const Task = require("./schema/taskschema.js");
 const app = express();
 
 const PORT = 3000;
-var uri = process.env.DB_URI
+const HOST = "0.0.0.0";
+var uri =
 
 const mydb = mongoose.connect(uri, {
   useUnifiedTopology: true,
@@ -20,58 +22,64 @@ const mydb = mongoose.connect(uri, {
 app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
+app.get("/", (req, res) => {
+  res.json({ message: "ok" });
+});
 
 app.post("/task", (req, res) => {
-    console.log("POST request made")
-    var schema = new Task({
-        taskId: req.body.taskId,
-        taskName: req.body.taskName,
-        completed: false
+  console.log("Request to make new task");
+  var schema = new Task({
+    taskName: req.body.taskName,
+    completed: false,
+  });
+
+  Task.create(schema)
+    .then((task) => {
+      console.log("Task made with id " + task._id);
+      res.status(201).json(task);
     })
-    
-    schema.save((err) => {
-        if(err) {
-            console.log(err)
-            res.sendStatus(503)
-        } else {
-            res.status(200).send('Create is successful')
-        }
-    })
-})
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 app.get("/task", (req, res) => {
-    Task.find((err, body) => {
-        if(err) {
-            console.log(err)
-            res.sendStatus(503)
-        } else {
-            res.status(200).json(body)
-        }
-    })
-})
+  console.log("Request for all tasks");
+  Task.find({}).then((task) => {
+    res.json(task);
+  });
+});
 
-app.delete("/task/:taskId", (req, res) => {
-    Task.deleteOne({taskId: req.params.taskId},(err, body) => {
-        if(err) {
-            console.log(err)
-            res.sendStatus(503)
-        } else {
-            res.status(200).send('Delete success')
-        }
+app.delete("/task/:_id", (req, res) => {
+  Task.deleteOne({ _id: req.params._id })
+    .then(() => {
+      console.log("Deleted task with id " + req.params._id);
     })
-})
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
-app.patch("/task/:id", (req, res) => {
-    Album.findOneAndUpdate({taskId: req.params.taskId}, req.body, (err) => {
-        if(err) {
-            console.log(err)
-            res.sendStatus(503)
-        } else {
-            res.status(200).send('Patch is successful')
-        }
+app.patch("/task/:_id", (req, res) => {
+  Task.updateOne({ _id: req.params._id }, { completed: true })
+    .then(() => {
+      console.log("Updated task with id " + req.params._id);
     })
-})
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
-app.listen(PORT, ()=>{
-    console.log('Listening on port ' + PORT)
-})
+app.listen(PORT, () => {
+  console.log("Listening on port " + PORT);
+});
