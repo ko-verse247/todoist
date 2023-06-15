@@ -70,18 +70,19 @@ onMounted(() => {
 </script>
 
 <template lang="pug">
-.tasklist
-    ul
-        TaskListItem(v-for="task in tasks" :task="task" @onDelete="taskDelete(task.taskId)")
-    .addTask
-        button(type="button" @click="displayAddTask()" :style="{display: addButtonDisplay}") 
-            img(src="@/assets/redaddicon.svg")
-            span 작업 추가
-        .addtaskinfo(:style="{visibility: addTaskDisplay}")
-            input(v-model="taskInfo" type="text" :placeholder="placeholderText" maxlength="500")
-            .addtaskbuttons
-                button(class="addButtonEnabled" type="button" @click="addTask()" :disabled="addDisable" ) 작업 추가
-                button(type="button" @click="cancelAddTask()") 취소
+.tasklistcontent
+    .tasklist
+        ul
+            TaskListItem(v-for="task in tasks" :task="task" @onDelete="taskDelete(task.taskId)")
+        .addTask
+            button(type="button" @click="displayAddTask()" :style="{display: addButtonDisplay}") 
+                img(src="@/assets/redaddicon.svg")
+                span 작업 추가
+            .addtaskinfo(:style="{visibility: addTaskDisplay}")
+                input(v-model="taskInfo" type="text" :placeholder="placeholderText" maxlength="500")
+                .addtaskbuttons
+                    button(class="addButtonEnabled" type="button" @click="addTask()" :disabled="addDisable" ) 작업 추가
+                    button(type="button" @click="cancelAddTask()") 취소
     .emptymessage(v-if="!tasks.length && emptyDisplay")
         h1 할 일이 없습니다
         p 남은 하루도 즐겁게 보내세요.
@@ -118,6 +119,10 @@ ul {
     margin: 0 auto;
 }
 
+.tasklistcontent {
+    padding-left: 55px;
+    padding-right: 55px;
+}
 .addTask {
     max-height: 76px;
     height: 100%;

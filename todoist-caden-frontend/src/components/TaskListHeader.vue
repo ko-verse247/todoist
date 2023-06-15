@@ -32,23 +32,23 @@ onMounted(() => {
 <style scoped>
 
 .taskheader {
-    border-bottom: 1px solid #f0f0f0;
     background-color: white;
     position: sticky;
     top: 0;
     z-index: 2;
     flex-shrink: 0;
     padding-top: 36px;
-    padding-bottom: 8px;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 800px;
+    padding-left: 55px;
+    padding-right: 55px;
 }
 
 .headercontent {
     display: flex;
-    justify-content: flex-start;
-    align-items: baseline;
+    align-items: flex-start;
+    width: 100%;
+    padding-bottom: 8px;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 h1 {
