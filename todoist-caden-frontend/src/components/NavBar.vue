@@ -5,24 +5,25 @@
 <template lang="pug">
 .navbar
     .leftbuttons
-        button(type="button" title="Open menu")
+        button(title="메뉴 열기")
             img(src="@/assets/menuicon.svg")
-        button(title="Go to home")
+        button(title="홈으로 이동")
             img(src="@/assets/homeicon.svg")
         .searchbar
-            img(src="@/assets/searchicon.svg")
+            img(class="searchicon" src="@/assets/searchicon.svg")
             input(class="search" placeholder="검색")
 
     .rightbuttons
-        button
+        button(title="작업 추가")
             img(src="@/assets/addicon.svg")
-        button
+        button(title="생산성 열기")
             img(src="@/assets/graphicon.svg")
             span 0/5
-        button
+        button(title="도움말 및 정보 열기")
             img(src="@/assets/infoicon.svg")
-        button
+        button(title="알림 열기")
             img(src="@/assets/bellicon.svg")
+        button(class="profileButton" title="프로필 사진 메뉴 열기")
 </template>
 
 <style scoped>
@@ -39,9 +40,15 @@
     justify-content: space-between;
     width: 100%;
 }
-button{
+
+button {
     background-color: var(--todoist-orange);
 }
+
+button:hover {
+    background-color: var(--todoist-soft-orange);
+}
+
 .leftbuttons {
     display: flex;
     align-items: center;
@@ -49,17 +56,22 @@ button{
 }
 
 .searchbar {
-    display:flex;
+    display: flex;
     width: 100%;
     border: 1px solid var(--todoist-soft-orange);
     background-color: var(--todoist-soft-orange);
 }
 
 .search {
+    outline: none;
     border: none;
     background-color: var(--todoist-soft-orange);
     width: 100%;
     color: white;
+}
+.search:focus, .search:hover{
+    background-color: white;
+    color: grey;
 }
 
 .rightbuttons {
@@ -67,4 +79,10 @@ button{
     align-items: center;
 }
 
+.profileButton {
+    background-color: white;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+}
 </style>
