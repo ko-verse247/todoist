@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps, ref, onMounted } from 'vue'
+import { markTaskComplete } from '../TodoistService.js'
 
 defineProps({
     task: Object
@@ -31,23 +32,23 @@ function changeIcon(e, task) {
 
 function taskUpdate(task) {
     task.completed = true;
-    //update task with id in mongodb
+    markTaskComplete(task._id);
 }
 
-function taskDelete(taskId) {
-    emit('onDelete', taskId)
+function taskDelete(id) {
+    emit('onDelete', id)
 }
 
 </script>
 
 <template lang="pug">
-li(:key="task.taskId" @mouseenter="onHover($event)" @mouseleave="onHover($event)")
+li(:key="task._id" @mouseenter="onHover($event)" @mouseleave="onHover($event)")
     .taskBody
         button(type="button" @mouseenter="changeIcon($event, task)" @mouseleave="changeIcon($event, task)" @click="taskUpdate(task)")
             img(v-if="!task.completed" :src="icon")
             img(v-else src="@/assets/activecheckboxicon.svg")
         .taskInfo {{ task.taskName }}
-        button(type="button" @click="taskDelete(task.taskId)" :style="{'visibility' : deleteVisible}")
+        button(type="button" @click="taskDelete(task._id)" :style="{'visibility' : deleteVisible}")
             img(src="@/assets/deleteicon.svg")
 </template>
 
