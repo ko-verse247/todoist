@@ -1,13 +1,16 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import TaskListItem from './TaskListItem.vue';
 
 const tasks = ref('');
 const taskInfo = ref('');
 const addTaskDisplay = ref('hidden');
-const addDisable = ref(true);
 const addButtonDisplay = ref('block');
 const placeholderText = ref('예. 매일 독서 p3 @목표#공부');
+
+const addDisable = computed(() => {
+    return taskInfo.value.length == 0;
+})
 
 const count = ref(5);
 
@@ -24,7 +27,6 @@ function addTask() {
     }
     tasks.value.push(task);
     //update MongoDB with new task also
-
 
     addTaskDisplay.value = 'hidden';
     addButtonDisplay.value = 'inline';
@@ -71,21 +73,28 @@ onMounted(() => {
         button(type="button" @click="displayAddTask()" :style="{display: addButtonDisplay}") 
             img(src="@/assets/redaddicon.svg")
         .addtaskinfo(:style="{visibility: addTaskDisplay}")
-            input(v-model="taskInfo" type="text" :placeholder="placeholderText")
+            input(v-model="taskInfo" type="text" :placeholder="placeholderText" maxlength="500")
             .addtaskbuttons
-                button(type="button" @click="addTask()") 직업 추가
+                button(class="addButtonEnabled" type="button" @click="addTask()" :disabled="addDisable" ) 작업 추가
                 button(type="button" @click="cancelAddTask()") 취소
     
 </template>
 
 <style>
-
 ul {
     max-width: 100%;
     list-style: none;
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid #f0f0f0;
+}
+
+:disabled {
+    background-color: var(--todoist-soft-orange) !important;
+    cursor: not-allowed;
+}
+
+.addButtonEnabled {
+    background-color: var(--todoist-orange);
 }
 
 .tasklist {
@@ -93,5 +102,4 @@ ul {
     width: 100%;
     margin: 0 auto;
 }
-
 </style>
