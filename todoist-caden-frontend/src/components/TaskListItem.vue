@@ -51,7 +51,7 @@ li(:key="task.taskId" @mouseenter="onHover($event)" @mouseleave="onHover($event)
             img(src="@/assets/deleteicon.svg")
 </template>
 
-<style>
+<style scoped>
 li {
     border-bottom: 1px solid #f0f0f0;
 }

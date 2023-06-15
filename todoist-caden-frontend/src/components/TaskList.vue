@@ -6,6 +6,7 @@ const tasks = ref('');
 const taskInfo = ref('');
 const addTaskDisplay = ref('hidden');
 const addButtonDisplay = ref('block');
+const emptyDisplay = ref(true)
 const placeholderText = ref('예. 매일 독서 p3 @목표#공부');
 
 const addDisable = computed(() => {
@@ -36,11 +37,14 @@ function addTask() {
 function displayAddTask() {
     addTaskDisplay.value = 'visible';
     addButtonDisplay.value = 'none';
+    emptyDisplay.value = false;
 }
 
 function cancelAddTask() {
     addTaskDisplay.value = 'hidden';
     addButtonDisplay.value = 'inline';
+    emptyDisplay.value = true;
+    taskInfo.value = '';
 }
 
 onMounted(() => {
@@ -67,22 +71,32 @@ onMounted(() => {
 
 <template lang="pug">
 .tasklist
-    ul(v-if="tasks.length")
+    ul
         TaskListItem(v-for="task in tasks" :task="task" @onDelete="taskDelete(task.taskId)")
-    .addtask
+    .addTask
         button(type="button" @click="displayAddTask()" :style="{display: addButtonDisplay}") 
             img(src="@/assets/redaddicon.svg")
+            span 작업 추가
         .addtaskinfo(:style="{visibility: addTaskDisplay}")
             input(v-model="taskInfo" type="text" :placeholder="placeholderText" maxlength="500")
             .addtaskbuttons
                 button(class="addButtonEnabled" type="button" @click="addTask()" :disabled="addDisable" ) 작업 추가
                 button(type="button" @click="cancelAddTask()") 취소
-    
+    .emptymessage(v-if="!tasks.length && emptyDisplay")
+        h1 할 일이 없습니다
+        p 남은 하루도 즐겁게 보내세요.
 </template>
 
-<style>
+<style scoped>
+input {
+    width: 100%;
+    border-radius: 5px;
+    height: 45px;
+    outline: none;
+}
+
 ul {
-    max-width: 100%;
+    width: 100%;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -95,11 +109,25 @@ ul {
 
 .addButtonEnabled {
     background-color: var(--todoist-orange);
+    color: white;
 }
 
 .tasklist {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
+}
+
+.addTask {
+    max-height: 76px;
+    height: 100%;
+}
+
+.emptymessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 300px;
 }
 </style>
