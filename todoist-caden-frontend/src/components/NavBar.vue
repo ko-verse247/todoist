@@ -16,9 +16,9 @@
     .rightbuttons
         button(title="작업 추가")
             img(src="@/assets/addicon.svg")
-        button(title="생산성 열기")
+        button(class="graphButton" title="생산성 열기")
             img(src="@/assets/graphicon.svg")
-            span 0/5
+            span(class="graphText") 0/5
         button(title="도움말 및 정보 열기")
             img(src="@/assets/infoicon.svg")
         button(title="알림 열기")
@@ -41,8 +41,25 @@
     width: 100%;
 }
 
+.graphText {
+    color: white;
+    margin-left: 5px;
+}
+
 button {
     background-color: var(--todoist-orange);
+    height: 28px;
+    min-width: 28px;
+    border-radius: 3px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.graphButton {
+    margin-left: 12px;
 }
 
 button:hover {
@@ -66,10 +83,16 @@ button:hover {
     outline: none;
     border: none;
     background-color: var(--todoist-soft-orange);
-    width: 100%;
+    width: 218px !important;
     color: white;
 }
-.search:focus, .search:hover{
+.search:focus{
+    background-color: white;
+    color: grey;
+    width: 450px !important;
+}
+
+.search:hover {
     background-color: white;
     color: grey;
 }

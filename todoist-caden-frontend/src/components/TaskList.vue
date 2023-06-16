@@ -6,7 +6,7 @@ import { getTasks, deleteTask, postTask } from '../TodoistService.js'
 const tasks = ref('');
 const taskInfo = ref('');
 const addTaskDisplay = ref('hidden');
-const addButtonDisplay = ref('block');
+const addButtonDisplay = ref('flex');
 const emptyDisplay = ref(true)
 const placeholderText = ref('예. 매일 독서 p3 @목표#공부');
 
@@ -28,7 +28,7 @@ function addTask() {
     })
 
     addTaskDisplay.value = 'hidden';
-    addButtonDisplay.value = 'inline';
+    addButtonDisplay.value = 'flex';
     taskInfo.value = '';
 }
 
@@ -40,7 +40,7 @@ function displayAddTask() {
 
 function cancelAddTask() {
     addTaskDisplay.value = 'hidden';
-    addButtonDisplay.value = 'inline';
+    addButtonDisplay.value = 'flex';
     emptyDisplay.value = true;
     taskInfo.value = '';
 }
@@ -59,9 +59,9 @@ onMounted(() => {
         ul
             TaskListItem(v-for="task in tasks" :task="task" @onDelete="taskDelete(task._id)")
         .addTask
-            button(type="button" @click="displayAddTask()" :style="{display: addButtonDisplay}") 
+            button(class="addTaskDisplay" type="button" @click="displayAddTask()" :style="{display: addButtonDisplay}") 
                 img(src="@/assets/redaddicon.svg")
-                span 작업 추가
+                text(class="addText") 작업 추가
             .addtaskinfo(:style="{visibility: addTaskDisplay}")
                 input(v-model="taskInfo" type="text" :placeholder="placeholderText" maxlength="500")
                 .addtaskbuttons
@@ -78,6 +78,21 @@ input {
     border-radius: 5px;
     height: 45px;
     outline: none;
+}
+
+.addTaskDisplay {
+    padding-top: 8px;
+    color: grey;
+    font-size: 14px;
+    align-items: center;
+}
+
+.addTaskDisplay:hover{
+    color: var(--todoist-orange);
+}
+
+.addText{
+    padding-left: 11px;
 }
 
 ul {
