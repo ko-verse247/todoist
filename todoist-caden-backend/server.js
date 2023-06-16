@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT;
 var uri = process.env.DB_URI;
 
-const mydb = mongoose.connect(uri, {}, (err, res) => {
+const mydb = mongoose.connect(uri).then((err, res) => {
   try {
     console.log("connected to database");
   } catch (err) {
