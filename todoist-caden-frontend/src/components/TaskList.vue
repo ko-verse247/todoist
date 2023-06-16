@@ -66,18 +66,32 @@ onMounted(() => {
                 input(v-model="taskInfo" type="text" :placeholder="placeholderText" maxlength="500")
                 .addtaskbuttons
                     button(class="addButtonEnabled" type="button" @click="addTask()" :disabled="addDisable" ) 작업 추가
-                    button(type="button" @click="cancelAddTask()") 취소
+                    button(class="cancelButton" type="button" @click="cancelAddTask()") 취소
     .emptymessage(v-if="!tasks.length && emptyDisplay")
         h1 할 일이 없습니다
         p 남은 하루도 즐겁게 보내세요.
 </template>
 
 <style scoped>
+h1 {
+    line-height: 21px;
+    font-size: 17px;
+    padding-bottom: 15px;
+}
+
+p {
+    color: #777777;
+    font-size: 13px;
+    line-height: 18px;
+}
+
 input {
+    border: 1px solid #DDDDDD;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 6px;
     height: 45px;
     outline: none;
+    padding: 5px;
 }
 
 .addTaskDisplay {
@@ -95,6 +109,15 @@ input {
     padding-left: 11px;
 }
 
+.cancelButton {
+    min-width: 50px;
+    border: 1px solid lightgrey;
+}
+
+.cancelButton:hover {
+    background-color: lightgrey;
+}
+
 ul {
     width: 100%;
     list-style: none;
@@ -103,13 +126,21 @@ ul {
 }
 
 :disabled {
-    background-color: var(--todoist-soft-orange) !important;
+    background-color:#EABBB5 !important;
     cursor: not-allowed;
 }
 
 .addButtonEnabled {
     background-color: var(--todoist-orange);
     color: white;
+    min-width: 80px;
+}
+
+.addButtonEnabled, .cancelButton {
+    height: 30px;
+    margin: 5px;
+    border-radius: 3px;
+    font-size: 14px;
 }
 
 .tasklist {

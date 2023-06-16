@@ -1,8 +1,8 @@
 <script setup>
-import { defineProps, ref, onMounted } from 'vue'
+import { defineProps, ref, computed } from 'vue'
 import { markTaskComplete } from '../TodoistService.js'
 
-defineProps({
+const props = defineProps({
     task: Object
 })
 
@@ -10,12 +10,17 @@ const emit = defineEmits(['onDelete']);
 const deleteVisible = ref('hidden');
 const mouseOn = ref(false);
 
+const pointer = computed(() => {
+    return props.task.completed ? 'auto' : 'pointer';
+})
+
 function onHover(e) {
     if (e.type === 'mouseenter') {
         deleteVisible.value = 'visible';
     } else {
         deleteVisible.value = 'hidden';
     }
+    console.log(props.task.completed + ' ' + pointer.value)
 }
 
 function changeIcon(e, task) {
@@ -44,7 +49,7 @@ function taskDelete(id) {
 <template lang="pug">
 li(:key="task._id" @mouseenter="onHover($event)" @mouseleave="onHover($event)")
     .taskBody
-        button(type="button" @mouseenter="changeIcon($event, task)" @mouseleave="changeIcon($event, task)" @click="taskUpdate(task)")
+        button(type="button" @mouseenter="changeIcon($event, task)" @mouseleave="changeIcon($event, task)" @click="taskUpdate(task)" :style="{cursor: pointer}")
             img(v-if="!task.completed && !mouseOn" src="@/assets/defaultcheckboxicon.svg")
             img(v-else-if="task.completed || mouseOn" src="@/assets/activecheckboxicon.svg")
         .taskInfo {{ task.taskName }}
@@ -71,6 +76,7 @@ li {
     line-height: 21px;
     flex: 1;
     padding: 8px 0;
+    padding-left: 8px;
     margin-right: 30px;
 }
 </style>
