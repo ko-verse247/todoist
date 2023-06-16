@@ -2,7 +2,7 @@
 
 const express = require("express");
 
-require("dotenv").config;
+const test = require("dotenv").config();
 
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -12,7 +12,7 @@ const app = express();
 
 const PORT = 3000;
 const HOST = "0.0.0.0";
-var uri =
+var uri = process.env.DB_URI;
 
 const mydb = mongoose.connect(uri, {
   useUnifiedTopology: true,
