@@ -1,21 +1,21 @@
 import axios from 'axios'
 
-const url = 'http://localhost:3000'
+const url = 'task/'
 
 export async function getTasks() {
-  const response = await axios.get(url + '/task')
+  const response = await axios.get(url)
   return response.data
 }
 
 export function deleteTask(_id) {
-  axios.delete(url + '/task/' + _id)
+  axios.delete(url + _id)
 }
 
 export function markTaskComplete(_id) {
-  axios.patch(url + '/task/' + _id)
+  axios.patch(url + _id)
 }
 
 export async function postTask(task) {
-  const response = await axios.post(url + '/task', task)
+  const response = await axios.post(url, task)
   return response.data
 }

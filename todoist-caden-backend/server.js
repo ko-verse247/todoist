@@ -11,7 +11,6 @@ const Task = require("./schema/taskschema.js");
 const app = express();
 
 const PORT = 3000;
-const HOST = "0.0.0.0";
 var uri = process.env.DB_URI;
 
 const mydb = mongoose.connect(uri, {
@@ -30,10 +29,6 @@ app.use((req, res, next) => {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
-});
-
-app.get("/", (req, res) => {
-  res.json({ message: "ok" });
 });
 
 app.post("/task", (req, res) => {
