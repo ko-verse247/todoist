@@ -17,7 +17,7 @@ export default defineConfig({
   server: {
     proxy: {
         '/task': {
-            target: 'http://localhost:3000'
+            target: 'https://todoist-caden-api.onrender.com/'
         }
     }
 }
