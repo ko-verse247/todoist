@@ -6,7 +6,7 @@ const props = defineProps({
     task: Object
 })
 
-const emit = defineEmits(['onDelete']);
+const emit = defineEmits(['onDelete', 'onShowToast']);
 const deleteVisible = ref('hidden');
 const mouseOn = ref(false);
 
@@ -20,7 +20,6 @@ function onHover(e) {
     } else {
         deleteVisible.value = 'hidden';
     }
-    console.log(props.task.completed + ' ' + pointer.value)
 }
 
 function changeIcon(e, task) {
@@ -37,6 +36,7 @@ function changeIcon(e, task) {
 
 function taskUpdate(task) {
     task.completed = true;
+    emit('onShowToast')
     markTaskComplete(task._id);
 }
 
@@ -49,7 +49,7 @@ function taskDelete(id) {
 <template lang="pug">
 li(:key="task._id" @mouseenter="onHover($event)" @mouseleave="onHover($event)")
     .taskBody
-        button(type="button" @mouseenter="changeIcon($event, task)" @mouseleave="changeIcon($event, task)" @click="taskUpdate(task)" :style="{cursor: pointer}")
+        button(type="button" @mouseenter="changeIcon($event, task)" @mouseleave="changeIcon($event, task)" @click="taskUpdate(task)" :style="{cursor: pointer}" :disabled="task.completed")
             img(v-if="!task.completed && !mouseOn" src="@/assets/defaultcheckboxicon.svg")
             img(v-else-if="task.completed || mouseOn" src="@/assets/activecheckboxicon.svg")
         .taskInfo {{ task.taskName }}
@@ -57,7 +57,7 @@ li(:key="task._id" @mouseenter="onHover($event)" @mouseleave="onHover($event)")
             img(src="@/assets/deleteicon.svg")
 </template>
 
-<style scoped>
+<style scoped lang="less">
 li {
     border-bottom: 1px solid #f0f0f0;
 }

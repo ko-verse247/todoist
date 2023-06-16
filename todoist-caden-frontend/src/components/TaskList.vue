@@ -3,6 +3,7 @@ import { ref, onMounted, computed } from 'vue'
 import TaskListItem from './TaskListItem.vue';
 import { getTasks, deleteTask, postTask } from '../TodoistService.js'
 
+const emit = defineEmits(['onShowToast']);
 const tasks = ref('');
 const taskInfo = ref('');
 const addTaskDisplay = ref('hidden');
@@ -45,6 +46,10 @@ function cancelAddTask() {
     taskInfo.value = '';
 }
 
+function showToast() {
+    emit('onShowToast')
+}
+
 onMounted(() => {
     //fetches task data from MongoDB
     getTasks().then((reqTasks) => {
@@ -57,7 +62,7 @@ onMounted(() => {
 .tasklistcontent
     .tasklist
         ul
-            TaskListItem(v-for="task in tasks" :task="task" @onDelete="taskDelete(task._id)")
+            TaskListItem(v-for="task in tasks" :task="task" @onDelete="taskDelete(task._id)" @onShowToast="showToast()")
         .addTask
             button(class="addTaskDisplay" type="button" @click="displayAddTask()" :style="{display: addButtonDisplay}") 
                 img(src="@/assets/redaddicon.svg")
@@ -72,7 +77,7 @@ onMounted(() => {
         p 남은 하루도 즐겁게 보내세요.
 </template>
 
-<style scoped>
+<style scoped lang="less">
 h1 {
     line-height: 21px;
     font-size: 17px;

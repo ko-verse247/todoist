@@ -1,7 +1,20 @@
 <script setup>
+import { ref } from 'vue'
 import NavBar from './components/NavBar.vue';
 import TaskListHeader from './components/TaskListHeader.vue'
 import TaskList from './components/TaskList.vue'
+import ToastNotification from './components/ToastNotification.vue';
+
+const toast = ref(false);
+
+function showToast() {
+  toast.value = true;
+  setTimeout(() => toast.value = false, 2000);
+}
+
+function dismissToast() {
+  toast.value = false;
+}
 
 </script>
 
@@ -10,7 +23,8 @@ import TaskList from './components/TaskList.vue'
   NavBar
   .appinfo
     TaskListHeader
-    TaskList
+    TaskList(@onShowToast="showToast()")
+    ToastNotification(v-if="toast" @onDismiss="dismissToast()")
 </template>
 
 <style scoped>

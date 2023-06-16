@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template lang="pug">
 .navbar
     .leftbuttons
@@ -12,7 +8,6 @@
         .searchbar
             img(class="searchicon" src="@/assets/searchicon.svg")
             input(class="search" placeholder="검색")
-
     .rightbuttons
         button(title="작업 추가")
             img(src="@/assets/addicon.svg")
@@ -26,7 +21,7 @@
         button(class="profileButton" title="프로필 사진 메뉴 열기")
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .navbar {
     box-sizing: border-box;
     flex-shrink: 0;
@@ -86,7 +81,8 @@ button:hover {
     width: 218px !important;
     color: white;
 }
-.search:focus{
+
+.search:focus {
     background-color: white;
     color: grey;
     width: 450px !important;
