@@ -3,7 +3,6 @@ import axios from 'axios'
 const url = 'https://todoist-caden-api.onrender.com/task/'
 
 export async function getTasks() {
-  console.log(url)
   const response = await axios.get(url)
   return response.data
 }

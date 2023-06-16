@@ -8,7 +8,7 @@ defineProps({
 
 const emit = defineEmits(['onDelete']);
 const deleteVisible = ref('hidden');
-const icon = ref('/src/assets/defaultcheckboxicon.svg');
+const mouseOn = ref(false);
 
 function onHover(e) {
     if (e.type === 'mouseenter') {
@@ -21,11 +21,11 @@ function onHover(e) {
 function changeIcon(e, task) {
     if (e.type === 'mouseenter') {
         if (!task.completed) {
-            icon.value = '/src/assets/activecheckboxicon.svg';
+            mouseOn.value = true;
         }
     } else {
         if (!task.completed) {
-            icon.value = '/src/assets/defaultcheckboxicon.svg';
+            mouseOn.value = false;
         }
     }
 }
@@ -45,8 +45,8 @@ function taskDelete(id) {
 li(:key="task._id" @mouseenter="onHover($event)" @mouseleave="onHover($event)")
     .taskBody
         button(type="button" @mouseenter="changeIcon($event, task)" @mouseleave="changeIcon($event, task)" @click="taskUpdate(task)")
-            img(v-if="!task.completed" :src="icon")
-            img(v-else src="@/assets/activecheckboxicon.svg")
+            img(v-if="!task.completed && !mouseOn" src="@/assets/defaultcheckboxicon.svg")
+            img(v-else-if="task.completed || mouseOn" src="@/assets/activecheckboxicon.svg")
         .taskInfo {{ task.taskName }}
         button(type="button" @click="taskDelete(task._id)" :style="{'visibility' : deleteVisible}")
             img(src="@/assets/deleteicon.svg")
