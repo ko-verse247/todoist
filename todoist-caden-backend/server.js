@@ -10,7 +10,7 @@ const Task = require("./schema/taskschema.js");
 
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 var uri = process.env.DB_URI;
 
 const mydb = mongoose.connect(uri, {
@@ -22,7 +22,7 @@ app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "https://todoist-caden.onrender.com");
   res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE");
   res.header(
     "Access-Control-Allow-Headers",
