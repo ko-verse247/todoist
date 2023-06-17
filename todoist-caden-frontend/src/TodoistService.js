@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'https://todoist-caden-api.onrender.com'
+const url = 'https://todoist-caden-api.onrender.com/task'
 /**
  * Axios service to make requests to an API endpoint.
  * Accesses a MongoDB Database.
