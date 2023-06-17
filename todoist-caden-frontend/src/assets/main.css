@@ -1,0 +1,24 @@
+@import './base.css';
+
+#app,
+body {
+  overflow: hidden;
+}
+
+button {
+  font-family:inherit;
+  font-size:13px;
+  color:#202020;
+  text-decoration:none;
+  cursor:pointer;
+  background-color:transparent;
+  border:none;
+  padding:0;
+  margin:0;
+ }
+
+@media (hover: hover) {
+  a:hover {
+    background-color: white;
+  }
+}
