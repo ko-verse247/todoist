@@ -7,7 +7,7 @@ module.exports = mongoose.model(
   new Schema({
     taskId: { type: Number },
     taskName: { type: String },
-    completed: { type: Boolean }
+    completed: { type: Boolean },
   }),
   "task"
 );
