@@ -13,8 +13,10 @@ const url = 'https://todoist-caden-api.onrender.com'
  * @returns All tasks from MongoDB
  */
 export async function getTasks() {
-  const response = await axios.get(url)
-  return response.data
+  const response = await axios.get(url).catch((e) => {
+    console.log(e)
+  })
+  return await response.data
 }
 
 /**
@@ -23,7 +25,9 @@ export async function getTasks() {
  * @param {String} _id 
  */
 export function deleteTask(_id) {
-  axios.delete(url + _id)
+  axios.delete(url + _id).catch((e) => {
+    console.log(e)
+  })
 }
 
 /**
@@ -32,7 +36,9 @@ export function deleteTask(_id) {
  * @param {String} _id 
  */
 export function markTaskComplete(_id) {
-  axios.patch(url + _id)
+  axios.patch(url + _id).catch((e) => {
+    console.log(e)
+  })
 }
 
 /**
@@ -42,6 +48,8 @@ export function markTaskComplete(_id) {
  * @returns Created task object
  */
 export async function postTask(task) {
-  const response = await axios.post(url, task)
-  return response.data
+  const response = await axios.post(url, task).catch((e) => {
+    console.log(e)
+  })
+  return await response.data
 }

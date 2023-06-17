@@ -6,7 +6,7 @@ const props = defineProps({
     task: Object
 })
 
-const emit = defineEmits(['onDelete']);
+const emit = defineEmits(['onDelete', 'onShowToast']);
 const deleteVisible = ref('hidden');
 const mouseOn = ref(false);
 
@@ -14,15 +14,29 @@ const pointer = computed(() => {
     return props.task.completed ? 'auto' : 'pointer';
 })
 
+/**
+ * Function to hide or show the
+ * delete button depending on
+ * whether the user is hovered
+ * over the list item or not.
+ * 
+ * @param {Event} e 
+ */
 function onHover(e) {
     if (e.type === 'mouseenter') {
         deleteVisible.value = 'visible';
     } else {
         deleteVisible.value = 'hidden';
     }
-    console.log(props.task.completed + ' ' + pointer.value)
 }
 
+/**
+ * Function to update the completed
+ * icon when the user hovers over it.
+ * 
+ * @param {Event} e 
+ * @param {Object} task 
+ */
 function changeIcon(e, task) {
     if (e.type === 'mouseenter') {
         if (!task.completed) {
@@ -35,11 +49,29 @@ function changeIcon(e, task) {
     }
 }
 
+/**
+ * Makes request to API to set
+ * given tasks 'completed' value
+ * to true and emits to show toast.
+ * 
+ * @param {Object} task 
+ */
 function taskUpdate(task) {
-    task.completed = true;
-    markTaskComplete(task._id);
+    emit('onShowToast')
+    markTaskComplete(task._id).then(() => {
+        task.completed = true;
+    })
 }
 
+/**
+ * Emits to let parent component
+ * know to call delete. Needs to be
+ * done here since parent function
+ * holds the array of Tasks and
+ * can delete the task from there.
+ * 
+ * @param {String} id 
+ */
 function taskDelete(id) {
     emit('onDelete', id)
 }
@@ -49,7 +81,7 @@ function taskDelete(id) {
 <template lang="pug">
 li(:key="task._id" @mouseenter="onHover($event)" @mouseleave="onHover($event)")
     .taskBody
-        button(type="button" @mouseenter="changeIcon($event, task)" @mouseleave="changeIcon($event, task)" @click="taskUpdate(task)" :style="{cursor: pointer}")
+        button(type="button" @mouseenter="changeIcon($event, task)" @mouseleave="changeIcon($event, task)" @click="taskUpdate(task)" :style="{cursor: pointer}" :disabled="task.completed")
             img(v-if="!task.completed && !mouseOn" src="@/assets/defaultcheckboxicon.svg")
             img(v-else-if="task.completed || mouseOn" src="@/assets/activecheckboxicon.svg")
         .taskInfo {{ task.taskName }}
@@ -57,7 +89,7 @@ li(:key="task._id" @mouseenter="onHover($event)" @mouseleave="onHover($event)")
             img(src="@/assets/deleteicon.svg")
 </template>
 
-<style scoped>
+<style scoped lang="less">
 li {
     border-bottom: 1px solid #f0f0f0;
 }

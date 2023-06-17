@@ -29,8 +29,7 @@ onMounted(() => {
         small {{ day }} {{ month }}월 {{ date }}일
 </template>
 
-<style scoped>
-
+<style scoped lang="less">
 .taskheader {
     background-color: white;
     position: sticky;
@@ -64,5 +63,4 @@ small {
     font-weight: 400;
     margin-top: auto;
 }
-
 </style>
