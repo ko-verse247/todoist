@@ -14,6 +14,14 @@ const pointer = computed(() => {
     return props.task.completed ? 'auto' : 'pointer';
 })
 
+/**
+ * Function to hide or show the
+ * delete button depending on
+ * whether the user is hovered
+ * over the list item or not.
+ * 
+ * @param {Event} e 
+ */
 function onHover(e) {
     if (e.type === 'mouseenter') {
         deleteVisible.value = 'visible';
@@ -22,6 +30,13 @@ function onHover(e) {
     }
 }
 
+/**
+ * Function to update the completed
+ * icon when the user hovers over it.
+ * 
+ * @param {Event} e 
+ * @param {Object} task 
+ */
 function changeIcon(e, task) {
     if (e.type === 'mouseenter') {
         if (!task.completed) {
@@ -34,12 +49,29 @@ function changeIcon(e, task) {
     }
 }
 
+/**
+ * Makes request to API to set
+ * given tasks 'completed' value
+ * to true and emits to show toast.
+ * 
+ * @param {Object} task 
+ */
 function taskUpdate(task) {
-    task.completed = true;
     emit('onShowToast')
-    markTaskComplete(task._id);
+    markTaskComplete(task._id).then(() => {
+        task.completed = true;
+    })
 }
 
+/**
+ * Emits to let parent component
+ * know to call delete. Needs to be
+ * done here since parent function
+ * holds the array of Tasks and
+ * can delete the task from there.
+ * 
+ * @param {String} id 
+ */
 function taskDelete(id) {
     emit('onDelete', id)
 }

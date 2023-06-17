@@ -15,11 +15,20 @@ const addDisable = computed(() => {
     return taskInfo.value.length == 0;
 })
 
+/**
+ * Makes request to delete task with given id.
+ * 
+ * @param {String} _id 
+ */
 function taskDelete(_id) {
-    tasks.value = tasks.value.filter(key => {return key._id.localeCompare(_id) != 0});
-    deleteTask(_id)
+    deleteTask(_id).then(() => {
+        tasks.value = tasks.value.filter(key => { return key._id.localeCompare(_id) != 0 });
+    })
 }
 
+/**
+ * Makes request to add task with given taskName.
+ */
 function addTask() {
     var task = {
         taskName: taskInfo.value
@@ -33,12 +42,22 @@ function addTask() {
     taskInfo.value = '';
 }
 
+/**
+ * Updates display to show add task
+ * input and buttons, hide the empty message
+ * and add task menu button.
+ */
 function displayAddTask() {
     addTaskDisplay.value = 'visible';
     addButtonDisplay.value = 'none';
     emptyDisplay.value = false;
 }
 
+/**
+ * Updates display to hide the add task
+ * input and buttons, show the add task
+ * menu button, and clear the input.
+ */
 function cancelAddTask() {
     addTaskDisplay.value = 'hidden';
     addButtonDisplay.value = 'flex';
@@ -46,12 +65,17 @@ function cancelAddTask() {
     taskInfo.value = '';
 }
 
+/**
+ * Emitter to emit show toast to let
+ * the parent component know to show
+ * the toast.
+ */
 function showToast() {
     emit('onShowToast')
 }
 
 onMounted(() => {
-    //fetches task data from MongoDB
+    //Will fetch all tasks when this component is mounted
     getTasks().then((reqTasks) => {
         tasks.value = reqTasks
     })
@@ -106,11 +130,11 @@ input {
     align-items: center;
 }
 
-.addTaskDisplay:hover{
+.addTaskDisplay:hover {
     color: var(--todoist-orange);
 }
 
-.addText{
+.addText {
     padding-left: 11px;
 }
 
@@ -131,7 +155,7 @@ ul {
 }
 
 :disabled {
-    background-color:#EABBB5 !important;
+    background-color: #EABBB5 !important;
     cursor: not-allowed;
 }
 
@@ -141,7 +165,8 @@ ul {
     min-width: 80px;
 }
 
-.addButtonEnabled, .cancelButton {
+.addButtonEnabled,
+.cancelButton {
     height: 30px;
     margin: 5px;
     border-radius: 3px;
@@ -158,6 +183,7 @@ ul {
     padding-left: 55px;
     padding-right: 55px;
 }
+
 .addTask {
     max-height: 76px;
     height: 100%;

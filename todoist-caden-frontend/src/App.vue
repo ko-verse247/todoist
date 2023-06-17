@@ -7,11 +7,20 @@ import ToastNotification from './components/ToastNotification.vue';
 
 const toast = ref(false);
 
+/**
+ * Function to show the toast.
+ * Times out after 2 seconds.
+ */
 function showToast() {
   toast.value = true;
   setTimeout(() => toast.value = false, 2000);
 }
 
+/**
+ * Function that allows the user
+ * to dismiss the toast by clicking
+ * the cancel button.
+ */
 function dismissToast() {
   toast.value = false;
 }
@@ -28,11 +37,11 @@ function dismissToast() {
 </template>
 
 <style scoped>
-.appinfo{
+.appinfo {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  overflow-y:auto;
+  overflow-y: auto;
 }
 
 .apppage {
