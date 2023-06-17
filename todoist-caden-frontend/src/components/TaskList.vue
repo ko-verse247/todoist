@@ -21,9 +21,9 @@ const addDisable = computed(() => {
  * @param {String} _id 
  */
 function taskDelete(_id) {
-    deleteTask(_id).then(() => {
-        tasks.value = tasks.value.filter(key => { return key._id.localeCompare(_id) != 0 });
-    })
+    deleteTask(_id);
+    tasks.value = tasks.value.filter(key => { return key._id.localeCompare(_id) != 0 });
+
 }
 
 /**

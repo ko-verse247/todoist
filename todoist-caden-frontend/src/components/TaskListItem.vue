@@ -58,9 +58,8 @@ function changeIcon(e, task) {
  */
 function taskUpdate(task) {
     emit('onShowToast')
-    markTaskComplete(task._id).then(() => {
-        task.completed = true;
-    })
+    markTaskComplete(task._id);
+    task.completed = true;
 }
 
 /**
