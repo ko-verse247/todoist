@@ -1,3 +1,11 @@
+# Caden Pepper - Todoist
+
+Completed Todoist clone. 
+It's currently hosted on https://todoist-caden.onrender.com through Render.com
+
+The Navigation Bar is non-functional, but the buttons do show messages on hover.
+
+------------------------------------------------------------------------------------------------------
 
 # Todoist Code Test
 
