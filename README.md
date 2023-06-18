@@ -1,11 +1,11 @@
 # todoist-cynthia
 
 :computer: Run the project: 
-Backend Command: node server.js
+Backend Command: node server.js /
 Frontend Command: npm run dev 
 
 :woman_technologist: Tech Stack
-Backend Tech Stack: Node.js, Express, Mongo DB, Mongoose
+Backend Tech Stack: Node.js, Express, Mongo DB, Mongoose /
 Frontend Tech Stack: Vue.js
 
 :cherry_blossom: App Design: 
